@@ -1,0 +1,44 @@
+<div class="container">
+  <h2 style="text-align: center">Registrazione nuovo utente</h2>
+  <hr />
+</div>
+<div class="d-flex justify-content-center">
+  <form class="row g-3" [formGroup]="newUser" (ngSubmit)="onSubmit()">
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="floatingInput"
+        formControlName="username"
+        placeholder="Username"
+        required
+      />
+      <label for="floatingInput">Username</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="password"
+        class="form-control"
+        id="floatingInput"
+        formControlName="password"
+        placeholder="Password"
+        required
+      />
+      <label for="floatingInput">Password</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="email"
+        class="form-control"
+        id="floatingInput"
+        formControlName="email"
+        placeholder="Email"
+        required
+      />
+      <label for="floatingInput">Email</label>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-success btn-lg">Registrati</button>
+    </div>
+  </form>
+</div>

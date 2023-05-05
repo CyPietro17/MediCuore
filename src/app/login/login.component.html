@@ -1,0 +1,54 @@
+<div class="container" style="margin-top: 5%">
+  <div class="card text-center" style="max-width: 18rem; margin: auto">
+    <div
+      class="card-header"
+      style="text-align: center; background-color: #d1e7dd"
+    >
+      <h2>Effettua login</h2>
+    </div>
+    <form
+      class="form-signin"
+      [formGroup]="controllUser"
+      (ngSubmit)="gestAuth()"
+    >
+      <div class="card-body">
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            id="floatingInput"
+            name="username"
+            class="form-control"
+            formControlName="username"
+            placeholder="Username"
+            required
+          />
+          <label for="floatingInput">Username</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="password"
+            id="floatingPassword"
+            name="password"
+            class="form-control"
+            placeholder="Password"
+            formControlName="password"
+            required
+          />
+          <label for="floatingPassword">Password</label>
+        </div>
+      </div>
+      <div
+        class="card-footer"
+        style="text-align: center; background-color: #d1e7dd"
+      >
+        <button class="btn btn-success btn-sm" type="submit">Login</button>
+        or
+        <button type="button" class="btn btn-primary btn-sm">
+          <a style="text-decoration: none; color: white" routerLink="/register"
+            >Sign in</a
+          >
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="d-flex justify-content-center">
+  <form class="row g-3" [formGroup]="newReparto" (ngSubmit)="onSubmit()">
+    <div class="form-floating mb-4, col-auto">
+      <input
+        type="text"
+        formControlName="t_nome"
+        class="form-control"
+        id="floatingInput"
+        placeholder="Nome Reparto"
+        value=""
+        required
+      />
+      <label for="floatingInput">Nome Reparto</label>
+    </div>
+    <div class="form-floating mb-4, col-auto">
+      <input
+        type="number"
+        formControlName="n_postiLettoEffettivi"
+        class="form-control"
+        id="floatingInput"
+        placeholder="Posti Letto"
+        value="0"
+      />
+      <label for="floatingInput">Posti Letto</label>
+    </div>
+    <div class="col-auto">
+      <button
+        style="--bs-btn-line-height: 2"
+        type="submit"
+        class="btn btn-primary btn-lg"
+      >
+        Conferma
+      </button>
+    </div>
+  </form>
+</div>

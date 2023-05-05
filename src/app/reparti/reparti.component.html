@@ -1,0 +1,40 @@
+<h2 style="text-align: center">Reparti</h2>
+<hr class="container" />
+<div class="container">
+  <table class="table table-bordered">
+    <thead>
+      <tr class="table-success">
+        <th style="text-align: center">Nome Reparto</th>
+        <th style="text-align: center">Posti Letto</th>
+        <th style="text-align: center">Posti Disponibili</th>
+        <th style="text-align: center">Disponibilità</th>
+        <th style="text-align: center">Azioni</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let reparto of reparti$ | async">
+        <td style="text-align: center">{{ reparto.t_nome }}</td>
+        <td style="text-align: center">{{ reparto.n_postiLettoEffettivi }}</td>
+        <td style="text-align: center">
+          {{ reparto.n_postiLettoDisponibili }}
+        </td>
+        <td style="text-align: center">{{ reparto.b_postiLiberi }}</td>
+        <td style="text-align: center">
+          <a
+            routerLink="/ricoveri/{{ reparto.n_id }}"
+            style="text-decoration: none"
+            ><span class="pi pi-list" style="padding-right: 10px"></span></a
+          ><a
+            routerLink="/impiegati/{{ reparto.n_id }}"
+            style="text-decoration: none"
+            ><span class="pi pi-users"></span
+          ></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<button class="btn btn-success btn-lg" (click)="add()">Aggiungi Reparto</button>
+<div *ngIf="aggiungi">
+  <app-new-reparto (reparto)="onNewReparto($event)"></app-new-reparto>
+</div>

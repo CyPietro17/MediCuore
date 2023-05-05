@@ -1,0 +1,84 @@
+<div class="container">
+  <h2 style="text-align: center">Registrazione nuovo Impiegato</h2>
+  <hr />
+</div>
+<div class="d-flex justify-content-center">
+  <form class="row g-3" [formGroup]="newImpiegato" (ngSubmit)="onSubmit()">
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        formControlName="t_nome"
+        class="form-control"
+        id="floatingInput"
+        placeholder="Nome"
+        value=""
+        required
+      />
+      <label for="floatingInput">Nome</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        formControlName="t_cognome"
+        class="form-control"
+        id="floatingInput"
+        placeholder="Cognome"
+        value=""
+        required
+      />
+      <label for="floatingInput">Cognome</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="date"
+        formControlName="d_dataNascita"
+        class="form-control"
+        id="floatingInput"
+        placeholder="Data di Nascita"
+        required
+        value=""
+      />
+      <label for="floatingInput">Data di Nascita</label>
+    </div>
+    <div class="form-floating mb-3">
+      <select
+        class="form-select"
+        aria-label="Default select example"
+        formControlName="n_reparto"
+        id="floatingSelect"
+        required
+      >
+        <option
+          *ngFor="let reparto of reparti$ | async"
+          value="{{ reparto.n_id }}"
+        >
+          {{ reparto.t_nome }}
+        </option>
+      </select>
+      <label for="floatingSelect">Reparto</label>
+    </div>
+    <div class="form-floating mb-3">
+      <select
+        class="form-select"
+        aria-label="Default select example"
+        formControlName="t_professione"
+        id="floatingSelect"
+        required
+      >
+        <option value="Medico">Medico</option>
+        <option value="Infermiere">Infermiere</option>
+        <option value="Capo Reparto">Capo Reparto</option>
+      </select>
+      <label for="floatingSelect">Professione</label>
+    </div>
+    <div class="col-auto">
+      <button
+        style="--bs-btn-line-height: 2"
+        type="submit"
+        class="btn btn-primary btn-lg"
+      >
+        Conferma
+      </button>
+    </div>
+  </form>
+</div>

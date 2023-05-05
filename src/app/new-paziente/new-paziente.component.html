@@ -1,0 +1,49 @@
+<div class="d-flex justify-content-center">
+  <form class="row g-3" [formGroup]="newPaziente" (ngSubmit)="onSubmit()">
+    <div class="form-floating mb-4, col-auto">
+      <input
+        type="text"
+        formControlName="t_nome"
+        class="form-control"
+        id="floatingInput"
+        placeholder="Nome"
+        value=""
+        required
+      />
+      <label for="floatingInput">Nome</label>
+    </div>
+    <div class="form-floating mb-4, col-auto">
+      <input
+        type="text"
+        formControlName="t_cognome"
+        class="form-control"
+        id="floatingInput"
+        placeholder="Cognome"
+        value=""
+        required
+      />
+      <label for="floatingInput">Cognome</label>
+    </div>
+    <div class="form-floating mb-4, col-auto">
+      <input
+        type="date"
+        formControlName="d_dataNascita"
+        class="form-control"
+        id="floatingInput"
+        placeholder="Data di Nascita"
+        required
+        value=""
+      />
+      <label for="floatingInput">Data di Nascita</label>
+    </div>
+    <div class="col-auto">
+      <button
+        style="--bs-btn-line-height: 2"
+        type="submit"
+        class="btn btn-primary btn-lg"
+      >
+        Conferma
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,37 @@
+<h2 style="text-align: center">Ricoveri</h2>
+<hr class="container" />
+<div class="container">
+  <table class="table table-bordered">
+    <thead>
+      <tr class="table-success">
+        <th style="text-align: center">ID</th>
+        <th style="text-align: center">Inizio Ricovero</th>
+        <th style="text-align: center">Nome Paziente</th>
+        <th style="text-align: center">CF Paziente</th>
+        <th style="text-align: center">Reparto</th>
+        <th style="text-align: center">Azioni</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ricovero of ricoveri$ | async">
+        <td style="text-align: center">{{ ricovero.n_id }}</td>
+        <td style="text-align: center">{{ ricovero.d_inizioRicovero }}</td>
+        <td style="text-align: center">
+          {{ ricovero.n_paziente.t_nome }} {{ ricovero.n_paziente.t_cognome }}
+        </td>
+        <td style="text-align: center">
+          {{ ricovero.n_paziente.t_codiceFiscale }}
+        </td>
+        <td style="text-align: center">{{ ricovero.t_reparto.t_nome }}</td>
+        <td style="text-align: center">
+          <a routerLink="/paziente" style="text-decoration: none"
+            ><span class="pi pi-list" style="padding-right: 10px"></span
+          ></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<button class="btn btn-success btn-lg" (click)="add()">
+  Aggiungi Paziente
+</button>

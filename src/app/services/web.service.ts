@@ -1,17 +1,18 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { InizioRicoveroRequest, Ricovero } from 'src/types/Ricovero';
 import { Reparto, RepartoRequest } from 'src/types/Reparto';
 import { Paziente, PazienteRequest } from 'src/types/Paziente';
 import { Impiegato, ImpiegatoRequest } from 'src/types/Impiegato';
 import { User, UserRequest } from 'src/types/User';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WebService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private route: Router) {}
 
   private readonly apiUrl: string = `http://localhost:8080`;
 
@@ -49,6 +50,12 @@ export class WebService {
     );
   }
 
+  getRicoveriPaziente(id: number): Observable<Ricovero[]> {
+    return this.httpClient.get<Ricovero[]>(
+      `${this.apiUrl}/ricoveri/paziente?id_p=` + id
+    );
+  }
+
   getImpiegatiReparto(id: number): Observable<Impiegato[]> {
     return this.httpClient.get<Impiegato[]>(
       `${this.apiUrl}/impiegati/reparto/` + id
@@ -81,7 +88,7 @@ export class WebService {
     return this.httpClient.put<User>(`${this.apiUrl}/register`, utente);
   }
 
-  getUtente(user: UserRequest): Observable<User> {
-    return this.httpClient.post<User>(`${this.apiUrl}/login`, user);
+  roleUser(user: UserRequest): Observable<string> {
+    return this.httpClient.get<string>(`${this.apiUrl}/role`);
   }
 }

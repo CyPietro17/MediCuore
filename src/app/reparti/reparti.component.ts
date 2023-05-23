@@ -1,7 +1,9 @@
+import { Route, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { WebService } from '../services/web.service';
 import { Component, OnInit } from '@angular/core';
 import { Reparto, RepartoRequest } from 'src/types/Reparto';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-reparti',
@@ -9,14 +11,28 @@ import { Reparto, RepartoRequest } from 'src/types/Reparto';
   styleUrls: ['./reparti.component.css'],
 })
 export class RepartiComponent implements OnInit {
-  constructor(private webService: WebService) {}
+  constructor(
+    private webService: WebService,
+    private route: Router,
+    private authService: AuthService
+  ) {}
 
   aggiungi: boolean = false;
+  adminRole: boolean = false;
+  isLoggedIn = false;
 
   reparti$!: Observable<Reparto[]>;
 
   ngOnInit(): void {
-    this.reparti$ = this.webService.getReparti();
+    this.isLoggedIn = this.authService.isUserLoggedIn();
+    this.webService.getReparti().subscribe({
+      next: () => {
+        this.reparti$ = this.webService.getReparti();
+      },
+      error: () => {
+        this.route.navigateByUrl('/login');
+      },
+    });
   }
 
   add(): boolean {

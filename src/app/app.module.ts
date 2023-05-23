@@ -9,7 +9,7 @@ import { ErrorComponent } from './error/error.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { RepartiComponent } from './reparti/reparti.component';
 import { CoreModule } from './core/core.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NewRepartoComponent } from './new-reparto/new-reparto.component';
 import { PazientiComponent } from './pazienti/pazienti.component';
 import { RicoveriComponent } from './ricoveri/ricoveri.component';
@@ -20,6 +20,8 @@ import { ImpiegatiRepartoComponent } from './impiegati-reparto/impiegati-reparto
 import { RegisterComponent } from './register/register.component';
 import { NewRicoveroComponent } from './new-ricovero/new-ricovero.component';
 import { RicoveriAttiviComponent } from './ricoveri-attivi/ricoveri-attivi.component';
+import { RicoveriPazienteComponent } from './ricoveri-paziente/ricoveri-paziente.component';
+import { InterceptService } from './services/intercept.service';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { RicoveriAttiviComponent } from './ricoveri-attivi/ricoveri-attivi.compo
     RegisterComponent,
     NewRicoveroComponent,
     RicoveriAttiviComponent,
+    RicoveriPazienteComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,9 @@ import { RicoveriAttiviComponent } from './ricoveri-attivi/ricoveri-attivi.compo
     CoreModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptService, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

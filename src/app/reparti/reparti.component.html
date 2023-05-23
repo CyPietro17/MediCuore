@@ -34,7 +34,11 @@
     </tbody>
   </table>
 </div>
-<button class="btn btn-success btn-lg" (click)="add()">Aggiungi Reparto</button>
-<div *ngIf="aggiungi">
-  <app-new-reparto (reparto)="onNewReparto($event)"></app-new-reparto>
+<div class="container">
+  <button class="btn btn-success btn-lg" (click)="add()">
+    Aggiungi Reparto
+  </button>
+  <div *ngIf="aggiungi">
+    <app-new-reparto (reparto)="onNewReparto($event)"></app-new-reparto>
+  </div>
 </div>

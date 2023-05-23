@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserRequest } from 'src/types/User';
+import { Router } from '@angular/router';
+import { WebService } from '../services/web.service';
 
 @Component({
   selector: 'app-login',
@@ -9,10 +11,17 @@ import { UserRequest } from 'src/types/User';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private webService: WebService,
+    private authService: AuthService,
+    private route: Router
+  ) {}
 
+  errorMessage = 'Invalid Credentials';
+  successMessage!: string;
+  invalidLogin = false;
+  loginSuccess = false;
   authenticate: boolean = true;
-  errorMsg: string = 'Username e/o Password sono errati!';
 
   ngOnInit(): void {}
 
@@ -20,10 +29,6 @@ export class LoginComponent implements OnInit {
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
   });
-
-  gestAuth(): void {
-    this.authService.autenticazione(this.preparedRequest());
-  }
 
   preparedRequest(): UserRequest {
     return {
@@ -39,5 +44,30 @@ export class LoginComponent implements OnInit {
 
   get password() {
     return this.controllUser.get('password')?.value;
+  }
+
+  gestAuth(): void {
+    this.authService
+      .authenticationService(
+        this.preparedRequest().username!,
+        this.preparedRequest().password!
+      )
+      .subscribe(
+        (result) => {
+          this.invalidLogin = false;
+          this.loginSuccess = true;
+          this.successMessage = 'Login Successful.';
+          /* this.webService.roleUser(this.preparedRequest()).subscribe({
+            next: (res) => {
+              sessionStorage.setItem('Role', res);
+            },
+          }); */
+          this.route.navigate(['/reparti']);
+        },
+        () => {
+          this.invalidLogin = true;
+          this.loginSuccess = false;
+        }
+      );
   }
 }

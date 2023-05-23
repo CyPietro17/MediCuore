@@ -4,18 +4,15 @@
   <table class="table table-bordered">
     <thead>
       <tr class="table-success">
-        <th style="text-align: center">ID</th>
         <th style="text-align: center">Nome e Cognome</th>
         <th style="text-align: center">Data di Nascita</th>
         <th style="text-align: center">Codice Fiscale</th>
         <th style="text-align: center">Professione</th>
-        <th style="text-align: center">Stato Assunzione</th>
         <th style="text-align: center">Azioni</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let impiegato of impiegati$ | async">
-        <td style="text-align: center">{{ impiegato.n_id }}</td>
         <td style="text-align: center">
           {{ impiegato.t_nome }} {{ impiegato.t_cognome }}
         </td>
@@ -24,7 +21,6 @@
         <td style="text-align: center">
           {{ impiegato.t_professione }}
         </td>
-        <td style="text-align: center">{{ impiegato.b_active }}</td>
         <td style="text-align: center">
           <a
             routerLink="/reparti/{{ impiegato.n_id }}"

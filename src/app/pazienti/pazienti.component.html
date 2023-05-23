@@ -33,10 +33,11 @@
       </tr>
     </tbody>
   </table>
-</div>
-<button class="btn btn-success btn-lg" (click)="add()">
-  Aggiungi Paziente
-</button>
-<div *ngIf="aggiungi">
-  <app-new-paziente (paziente)="onNewPaziente($event)"></app-new-paziente>
+
+  <button class="btn btn-success btn-lg" (click)="add()">
+    Aggiungi Paziente
+  </button>
+  <div *ngIf="aggiungi">
+    <app-new-paziente (paziente)="onNewPaziente($event)"></app-new-paziente>
+  </div>
 </div>

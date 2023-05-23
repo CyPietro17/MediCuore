@@ -1,10 +1,10 @@
-<h2 style="text-align: center">Impiegati</h2>
-<hr class="container" />
 <div class="container">
+  <h2 style="text-align: center">Impiegati</h2>
+  <hr />
+
   <table class="table table-bordered">
     <thead>
       <tr class="table-success">
-        <th style="text-align: center">ID</th>
         <th style="text-align: center">Nome e Cognome</th>
         <th style="text-align: center">Data di Nascita</th>
         <th style="text-align: center">Codice Fiscale</th>
@@ -16,7 +16,6 @@
     </thead>
     <tbody>
       <tr *ngFor="let impiegato of impiegati$ | async">
-        <td style="text-align: center">{{ impiegato.n_id }}</td>
         <td style="text-align: center">
           {{ impiegato.t_nome }} {{ impiegato.t_cognome }}
         </td>

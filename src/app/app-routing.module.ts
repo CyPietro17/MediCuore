@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'reparti', component: RepartiComponent },
-  /* { path: 'ricoveri', component: RicoveriComponent }, */
+  /* { path: 'ricoveri/paziente/:id', component: RicoveriPazientenComponent }, */
   { path: 'ricoveri/attivi', component: RicoveriAttiviComponent },
   { path: 'ricoveri/nuovo', component: NewRicoveroComponent },
   { path: 'impiegati', component: ImpiegatiComponent },

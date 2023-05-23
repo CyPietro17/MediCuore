@@ -4,6 +4,8 @@
     <li><a routerLink="/pazienti">Pazienti</a></li>
     <li><a routerLink="/impiegati">Impiegati</a></li>
     <li><a routerLink="/ricoveri/attivi">Ricoveri</a></li>
-    <li style="float: right"><a routerLink="/login">Logout</a></li>
+    <li style="float: right">
+      <a routerLink="/login" (click)="clearSession()">Logout</a>
+    </li>
   </ul>
 </header>

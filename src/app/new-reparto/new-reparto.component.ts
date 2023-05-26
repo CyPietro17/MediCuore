@@ -14,11 +14,10 @@ export class NewRepartoComponent {
 
   newReparto = new FormGroup({
     t_nome: new FormControl('', Validators.required),
-    n_postiLettoEffettivi: new FormControl(0, Validators.required),
+    n_postiLettoEffettivi: new FormControl(1, Validators.required),
   });
 
   onSubmit() {
-    console.log(this.prepareRequest());
     this.reparto.emit(this.prepareRequest());
     this.newReparto.reset();
   }

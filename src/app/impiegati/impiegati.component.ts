@@ -12,12 +12,21 @@ import { Router } from '@angular/router';
 export class ImpiegatiComponent implements OnInit {
   constructor(private webService: WebService, private route: Router) {}
 
+  admin: boolean = false;
   aggiungi: boolean = false;
 
   impiegati$!: Observable<Impiegato[]>;
 
   ngOnInit(): void {
     this.impiegati$ = this.webService.getImpiegatiAssunti();
+    this.getRole();
+  }
+
+  getRole(): boolean {
+    if (sessionStorage.getItem('authenticatedUser') === 'admin01') {
+      return (this.admin = true);
+    }
+    return (this.admin = false);
   }
 
   add() {

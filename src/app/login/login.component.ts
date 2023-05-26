@@ -1,9 +1,9 @@
+import { WebService } from './../services/web.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserRequest } from 'src/types/User';
 import { Router } from '@angular/router';
-import { WebService } from '../services/web.service';
 
 @Component({
   selector: 'app-login',
@@ -12,9 +12,9 @@ import { WebService } from '../services/web.service';
 })
 export class LoginComponent implements OnInit {
   constructor(
-    private webService: WebService,
     private authService: AuthService,
-    private route: Router
+    private route: Router,
+    private webService: WebService
   ) {}
 
   errorMessage = 'Invalid Credentials';

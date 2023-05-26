@@ -1,7 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { InizioRicoveroRequest, Ricovero } from 'src/types/Ricovero';
+import {
+  FineRicoveroRequest,
+  InizioRicoveroRequest,
+  Ricovero,
+} from 'src/types/Ricovero';
 import { Reparto, RepartoRequest } from 'src/types/Reparto';
 import { Paziente, PazienteRequest } from 'src/types/Paziente';
 import { Impiegato, ImpiegatoRequest } from 'src/types/Impiegato';
@@ -30,6 +34,19 @@ export class WebService {
     return this.httpClient.put<Reparto>(
       `${this.apiUrl}/reparti/nuovo`,
       reparto
+    );
+  }
+
+  cercaRicovero(id: number): Observable<Ricovero> {
+    return this.httpClient.get<Ricovero>(
+      `${this.apiUrl}/ricoveri/cerca?id=` + id
+    );
+  }
+
+  chiudiRicovero(ricovero: FineRicoveroRequest): Observable<Ricovero> {
+    return this.httpClient.post<Ricovero>(
+      `${this.apiUrl}/ricoveri/chiudi`,
+      ricovero
     );
   }
 
@@ -64,6 +81,16 @@ export class WebService {
 
   getPazienti(): Observable<Paziente[]> {
     return this.httpClient.get<Paziente[]>(`${this.apiUrl}/pazienti/tutti`);
+  }
+
+  getPazientiNonRicoverati(): Observable<Paziente[]> {
+    return this.httpClient.get<Paziente[]>(`${this.apiUrl}/pazienti/dimessi`);
+  }
+
+  paziente(id: number): Observable<Paziente> {
+    return this.httpClient.get<Paziente>(
+      `${this.apiUrl}/pazienti/cerca?id=` + id
+    );
   }
 
   nuovoPaziente(paziente: PazienteRequest): Observable<Paziente> {

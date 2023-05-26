@@ -7,6 +7,7 @@ export interface Ricovero {
   d_fineRicovero: Date;
   n_paziente: Paziente;
   t_reparto: Reparto;
+  b_cond: boolean;
 }
 
 export interface InizioRicoveroRequest {
@@ -16,5 +17,7 @@ export interface InizioRicoveroRequest {
 }
 
 export interface FineRicoveroRequest {
-  d_fineRicovero: Date;
+  d_fineRicovero: Date | null;
+  n_paziente: number | null | undefined;
+  n_reparto: number | null | undefined;
 }

@@ -1,5 +1,12 @@
-<app-header *ngIf="activated()"></app-header>
-
-<router-outlet></router-outlet>
-
-<app-footer></app-footer>
+<div class="header">
+  <app-header *ngIf="activated()"></app-header>
+</div>
+<div class="container">
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="push"></div>
+</div>
+<div class="footer">
+  <app-footer></app-footer>
+</div>

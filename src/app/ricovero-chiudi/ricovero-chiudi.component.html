@@ -1,0 +1,95 @@
+<div class="container">
+  <h2 style="text-align: center">
+    Ricovero del {{ ricovero$.d_inizioRicovero }} di
+    {{ ricovero$.n_paziente.t_cognome }} {{ ricovero$.n_paziente.t_nome }}
+  </h2>
+  <hr class="container" />
+  <div class="d-flex justify-content-center">
+    <form class="row g-3" [formGroup]="chiudiRicovero" (ngSubmit)="onSubmit()">
+      <!-- <div class="form-floating mb-3">
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          formControlName="n_paziente"
+          id="floatingSelect"
+          [value]="ricovero$.n_paziente.n_id"
+          [disabled]="true"
+        >
+          <option value="{{ ricovero$.n_paziente.n_id }}" disabled>
+            {{ ricovero$.n_paziente.t_cognome }}
+            {{ ricovero$.n_paziente.t_nome }}
+          </option>
+        </select>
+        <label for="floatingInput">Paziente</label>
+      </div> -->
+
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="floatingInput"
+          placeholder="Paziente"
+          disabled
+          value="{{ ricovero$.n_paziente.t_cognome }} {{
+            ricovero$.n_paziente.t_nome
+          }}"
+        />
+        <label for="floatingInput">Paziente</label>
+      </div>
+
+      <!-- <div class="form-floating mb-3">
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          formControlName="n_reparto"
+          id="floatingSelect"
+          [value]="ricovero$.t_reparto.n_id"
+          [disabled]="true"
+        >
+          <option value="{{ ricovero$.t_reparto.n_id }}" disabled>
+            {{ ricovero$.t_reparto.t_nome }}
+          </option>
+        </select>
+        <label for="floatingSelect">Reparto</label>
+      </div> -->
+
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="floatingInput"
+          placeholder="Reparto"
+          disabled
+          value="{{ ricovero$.t_reparto.t_nome }}"
+        />
+        <label for="floatingInput">Reparto</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input
+          type="date"
+          class="form-control"
+          id="floatingInput"
+          placeholder="Inizio Ricovero"
+          disabled
+          value="{{ ricovero$.d_inizioRicovero }}"
+        />
+        <label for="floatingInput">Inizio Ricovero</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input
+          type="date"
+          class="form-control"
+          id="floatingInput"
+          formControlName="d_fineRicovero"
+          placeholder="Fine Ricovero"
+          required
+        />
+        <label for="floatingInput">Fine Ricovero</label>
+      </div>
+      <div type="submit" class="form-floating mb-3">
+        <button class="btn btn-success btn-lg">Conferma</button>
+      </div>
+    </form>
+  </div>
+</div>

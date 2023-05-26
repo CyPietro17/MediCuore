@@ -1,14 +1,14 @@
 <h2 style="text-align: center">Reparti</h2>
 <hr class="container" />
 <div class="container">
-  <table class="table table-bordered">
+  <table class="table table-secondary table-hover">
     <thead>
       <tr class="table-success">
-        <th style="text-align: center">Nome Reparto</th>
-        <th style="text-align: center">Posti Letto</th>
-        <th style="text-align: center">Posti Disponibili</th>
-        <th style="text-align: center">Disponibilità</th>
-        <th style="text-align: center">Azioni</th>
+        <th style="text-align: center; width: 25%">Nome Reparto</th>
+        <th style="text-align: center; width: 20%">Posti Letto</th>
+        <th style="text-align: center; width: 20%">Posti Disponibili</th>
+        <th style="text-align: center; width: 20%">Disponibilità</th>
+        <th style="text-align: center; width: 15%">Azioni</th>
       </tr>
     </thead>
     <tbody>
@@ -33,12 +33,13 @@
       </tr>
     </tbody>
   </table>
-</div>
-<div class="container">
-  <button class="btn btn-success btn-lg" (click)="add()">
-    Aggiungi Reparto
-  </button>
-  <div *ngIf="aggiungi">
-    <app-new-reparto (reparto)="onNewReparto($event)"></app-new-reparto>
+
+  <div class="container" *ngIf="admin">
+    <button class="btn btn-success btn-lg" (click)="add()">
+      Aggiungi Reparto
+    </button>
+    <div *ngIf="aggiungi" style="padding: 50px">
+      <app-new-reparto (reparto)="onNewReparto($event)"></app-new-reparto>
+    </div>
   </div>
 </div>

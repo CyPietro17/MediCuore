@@ -11,15 +11,18 @@ import { RegisterComponent } from './register/register.component';
 import { NewRicoveroComponent } from './new-ricovero/new-ricovero.component';
 import { RicoveriAttiviComponent } from './ricoveri-attivi/ricoveri-attivi.component';
 import { NewImpiegatoComponent } from './new-impiegato/new-impiegato.component';
+import { RicoveriPazienteComponent } from './ricoveri-paziente/ricoveri-paziente.component';
+import { RicoveroChiudiComponent } from './ricovero-chiudi/ricovero-chiudi.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'reparti', component: RepartiComponent },
-  /* { path: 'ricoveri/paziente/:id', component: RicoveriPazientenComponent }, */
   { path: 'ricoveri/attivi', component: RicoveriAttiviComponent },
   { path: 'ricoveri/nuovo', component: NewRicoveroComponent },
+  { path: 'ricoveri/chiudi/:id', component: RicoveroChiudiComponent },
+  { path: 'ricoveri/paziente/:id', component: RicoveriPazienteComponent },
   { path: 'impiegati', component: ImpiegatiComponent },
   { path: 'impiegati/nuovo', component: NewImpiegatoComponent },
   { path: 'impiegati/:id', component: ImpiegatiRepartoComponent },

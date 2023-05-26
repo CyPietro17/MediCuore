@@ -13,8 +13,6 @@ import { Router } from '@angular/router';
 })
 export class NewImpiegatoComponent {
   constructor(private webService: WebService, private route: Router) {}
-  /*
-  @Output() impiegato = new EventEmitter<ImpiegatoRequest>(); */
 
   reparti$: Observable<Reparto[]> = this.webService.getReparti();
 
@@ -36,9 +34,6 @@ export class NewImpiegatoComponent {
         console.log('Impossibile aggiungere Impiegato');
       },
     });
-    /* console.log(this.prepareRequest());
-    this.impiegato.emit(this.prepareRequest());
-    this.newImpiegato.reset(); */
   }
 
   prepareRequest(): ImpiegatoRequest {

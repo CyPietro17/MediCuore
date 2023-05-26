@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponent } from './error/error.component';
-import { WelcomeComponent } from './welcome/welcome.component';
 import { RepartiComponent } from './reparti/reparti.component';
 import { CoreModule } from './core/core.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -22,13 +21,13 @@ import { NewRicoveroComponent } from './new-ricovero/new-ricovero.component';
 import { RicoveriAttiviComponent } from './ricoveri-attivi/ricoveri-attivi.component';
 import { RicoveriPazienteComponent } from './ricoveri-paziente/ricoveri-paziente.component';
 import { InterceptService } from './services/intercept.service';
+import { RicoveroChiudiComponent } from './ricovero-chiudi/ricovero-chiudi.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ErrorComponent,
-    WelcomeComponent,
     RepartiComponent,
     NewRepartoComponent,
     PazientiComponent,
@@ -41,6 +40,7 @@ import { InterceptService } from './services/intercept.service';
     NewRicoveroComponent,
     RicoveriAttiviComponent,
     RicoveriPazienteComponent,
+    RicoveroChiudiComponent,
   ],
   imports: [
     BrowserModule,

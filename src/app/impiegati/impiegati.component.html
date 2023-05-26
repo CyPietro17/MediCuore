@@ -2,7 +2,7 @@
   <h2 style="text-align: center">Impiegati</h2>
   <hr />
 
-  <table class="table table-bordered">
+  <table class="table table-secondary table-hover">
     <thead>
       <tr class="table-success">
         <th style="text-align: center">Nome e Cognome</th>
@@ -36,7 +36,9 @@
       </tr>
     </tbody>
   </table>
+  <div class="container" *ngIf="admin">
+    <button class="btn btn-success btn-lg" (click)="add()">
+      Aggiungi Impiegato
+    </button>
+  </div>
 </div>
-<button class="btn btn-success btn-lg" (click)="add()">
-  Aggiungi Impiegato
-</button>

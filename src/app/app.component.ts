@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   constructor(private route: Router) {}
   ngOnInit(): void {}
-  title = 'front-anagrafica';
+  title = 'MediCuore';
 
   active: boolean = true;
 

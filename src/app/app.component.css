@@ -1,0 +1,30 @@
+html,
+body {
+  height: 100%;
+}
+
+.container {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -100px;
+}
+
+.footer,
+.push {
+  clear: both;
+  height: 52px;
+}
+
+.footer {
+  /*  padding: 20px; */
+  text-align: center;
+  /* margin-top: 20px; */
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  line-height: 52px;
+  display: block;
+  background-color: #f3f3f3;
+  color: #444;
+}

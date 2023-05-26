@@ -2,6 +2,9 @@ import { WebService } from './../services/web.service';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Paziente } from 'src/types/Paziente';
+import { Reparto } from 'src/types/Reparto';
 import { InizioRicoveroRequest } from 'src/types/Ricovero';
 
 @Component({
@@ -11,6 +14,10 @@ import { InizioRicoveroRequest } from 'src/types/Ricovero';
 })
 export class NewRicoveroComponent {
   constructor(private webService: WebService, private route: Router) {}
+
+  reparti$: Observable<Reparto[]> = this.webService.getReparti();
+  pazienti$: Observable<Paziente[]> =
+    this.webService.getPazientiNonRicoverati();
 
   onSubmit() {
     console.log(this.prepareRequest());

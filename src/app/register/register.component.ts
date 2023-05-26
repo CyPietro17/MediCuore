@@ -19,16 +19,11 @@ export class RegisterComponent {
   });
 
   onSubmit() {
-    this.webService.nuovoUtente(this.preparedRequest()).subscribe(
-      /* (data) => {
-        this.route.navigate(['/login']);
-      } */
-      {
-        next: () => {
-          this.route.navigate(['login']);
-        },
-      }
-    );
+    this.webService.nuovoUtente(this.preparedRequest()).subscribe({
+      next: () => {
+        this.route.navigate(['login']);
+      },
+    });
   }
 
   preparedRequest(): UserRequest {

@@ -17,6 +17,7 @@ export class RepartiComponent implements OnInit {
     private authService: AuthService
   ) {}
 
+  admin: boolean = false;
   aggiungi: boolean = false;
   adminRole: boolean = false;
   isLoggedIn = false;
@@ -28,6 +29,7 @@ export class RepartiComponent implements OnInit {
     this.webService.getReparti().subscribe({
       next: () => {
         this.reparti$ = this.webService.getReparti();
+        this.getRole();
       },
       error: () => {
         this.route.navigateByUrl('/login');
@@ -37,6 +39,13 @@ export class RepartiComponent implements OnInit {
 
   add(): boolean {
     return (this.aggiungi = !this.aggiungi);
+  }
+
+  getRole(): boolean {
+    if (sessionStorage.getItem('authenticatedUser') === 'admin01') {
+      return (this.admin = true);
+    }
+    return (this.admin = false);
   }
 
   onNewReparto(reparto: RepartoRequest) {

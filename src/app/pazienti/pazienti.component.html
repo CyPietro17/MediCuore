@@ -1,10 +1,9 @@
 <h2 style="text-align: center">Pazienti</h2>
 <hr class="container" />
 <div class="container">
-  <table class="table table-bordered">
+  <table class="table table-secondary table-hover">
     <thead>
       <tr class="table-success">
-        <th style="text-align: center">ID</th>
         <th style="text-align: center">Nome e Cognome</th>
         <th style="text-align: center">Data di Nascita</th>
         <th style="text-align: center">Codice Fiscale</th>
@@ -14,7 +13,6 @@
     </thead>
     <tbody>
       <tr *ngFor="let paziente of pazienti$ | async">
-        <td style="text-align: center">{{ paziente.n_id }}</td>
         <td style="text-align: center">
           {{ paziente.t_nome }} {{ paziente.t_cognome }}
         </td>
@@ -25,7 +23,7 @@
         </td>
         <td style="text-align: center">
           <a
-            routerLink="/ricoveri/{{ paziente.n_id }}"
+            routerLink="/ricoveri/paziente/{{ paziente.n_id }}"
             style="text-decoration: none"
             ><span class="pi pi-list" style="padding-right: 10px"></span
           ></a>
@@ -34,10 +32,72 @@
     </tbody>
   </table>
 
-  <button class="btn btn-success btn-lg" (click)="add()">
-    Aggiungi Paziente
-  </button>
-  <div *ngIf="aggiungi">
-    <app-new-paziente (paziente)="onNewPaziente($event)"></app-new-paziente>
+  <div class="container">
+    <button class="btn btn-success btn-lg" (click)="add()">
+      Aggiungi Paziente
+    </button>
+    <div *ngIf="aggiungi" style="padding: 50px">
+      <app-new-paziente (paziente)="onNewPaziente($event)"></app-new-paziente>
+    </div>
   </div>
 </div>
+<!-- <table>
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="width: 25%">Nome e Cognome</th>
+      <th style="width: 25%">Data di Nascita</th>
+      <th style="width: 25%">Codice Fiscale</th>
+      <th style="width: 25%">Attualmente Ricoverato</th>
+    </tr>
+  </ng-template>
+  <ng-template
+    pTemplate="groupheader"
+    let-rowIndex="rowIndex"
+    let-expanded="expanded"
+  >
+    <tr *ngFor="let paziente of pazienti$ | async">
+      <td>
+        <button
+          type="button"
+          pButton
+          pRipple
+          pRowToggler="ricoveri"
+          class="p-button-text p-button-rounded p-button-plain mr-2"
+          icon="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
+        ></button>
+        <span class="font-bold ml-2"
+          >{{ paziente.t_nome }} {{ paziente.t_cognome }}</span
+        >
+      </td>
+      <td style="text-align: center">{{ paziente.d_dataNascita }}</td>
+      <td style="text-align: center">{{ paziente.t_codiceFiscale }}</td>
+      <td style="text-align: center">
+        {{ paziente.b_ricoverato }}
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="rowexpansion">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 25%">#</th>
+        <th style="width: 25%">Inizio Ricovero</th>
+        <th style="width: 25%">Fine Ricovero</th>
+        <th style="width: 25%">Reparto</th>
+      </tr>
+    </ng-template>
+    <tr *ngFor="let ricovero of ricoveri$ | async">
+      <td>
+        {{ ricovero.n_id }}
+      </td>
+      <td>
+        {{ ricovero.d_inizioRicovero }}
+      </td>
+      <td>
+        {{ ricovero.d_fineRicovero }}
+      </td>
+      <td>
+        {{ ricovero.t_reparto }}
+      </td>
+    </tr>
+  </ng-template>
+</table> -->

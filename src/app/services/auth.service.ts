@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { WebService } from './web.service';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { map } from 'rxjs';
 
 @Injectable({
@@ -12,7 +10,6 @@ export class AuthService {
 
   public username!: string | null;
   public password!: string | null;
-
   constructor(private http: HttpClient) {}
 
   authenticationService(username: string, password: string) {

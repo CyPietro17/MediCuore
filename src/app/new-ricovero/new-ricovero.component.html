@@ -15,7 +15,7 @@
       />
       <label for="floatingInput">Inizio Ricovero</label>
     </div>
-    <div class="form-floating mb-3">
+    <!-- <div class="form-floating mb-3">
       <input
         type="number"
         class="form-control"
@@ -25,8 +25,45 @@
         required
       />
       <label for="floatingInput">Paziente</label>
-    </div>
+    </div> -->
+
     <div class="form-floating mb-3">
+      <select
+        class="form-select"
+        aria-label="Default select example"
+        formControlName="n_paziente"
+        id="floatingSelect"
+        required
+      >
+        <option
+          *ngFor="let paziente of pazienti$ | async"
+          value="{{ paziente.n_id }}"
+        >
+          {{ paziente.t_nome }} {{ paziente.t_cognome }}
+        </option>
+      </select>
+      <label for="floatingInput">Paziente</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <select
+        class="form-select"
+        aria-label="Default select example"
+        formControlName="n_reparto"
+        id="floatingSelect"
+        required
+      >
+        <option
+          *ngFor="let reparto of reparti$ | async"
+          value="{{ reparto.n_id }}"
+        >
+          {{ reparto.t_nome }}
+        </option>
+      </select>
+      <label for="floatingSelect">Reparto</label>
+    </div>
+
+    <!-- <div class="form-floating mb-3">
       <input
         type="number"
         class="form-control"
@@ -36,7 +73,7 @@
         required
       />
       <label for="floatingInput">Reparto</label>
-    </div>
+    </div> -->
     <div class="col-auto">
       <button type="submit" class="btn btn-success btn-lg">
         Registra Ricovero

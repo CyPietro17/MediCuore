@@ -1,5 +1,5 @@
-import { WebService } from '../../../services/web.service';
-import { Component } from '@angular/core';
+import { WebService } from '../../services/web.service';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -12,8 +12,14 @@ import { InizioRicoveroRequest } from 'src/types/Ricovero';
   templateUrl: './new-ricovero.component.html',
   styleUrls: ['./new-ricovero.component.css'],
 })
-export class NewRicoveroComponent {
+export class NewRicoveroComponent implements OnInit {
   constructor(private webService: WebService, private route: Router) {}
+
+  ngOnInit(): void {
+    if (sessionStorage.getItem('authenticatedUser') == null) {
+      this.route.navigateByUrl('');
+    }
+  }
 
   reparti$: Observable<Reparto[]> = this.webService.getReparti();
   pazienti$: Observable<Paziente[]> =

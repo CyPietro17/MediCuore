@@ -18,9 +18,7 @@ export class ImpiegatiDimessiComponent implements OnInit {
     if (sessionStorage.getItem('authenticatedUser') === 'admin01') {
       this.dimessi$ = this.webService.getImpiegatiDimessi();
     } else {
-      /* alert('ACCESSO NEGATO!!'); */
-      this.route.navigateByUrl('/error');
-      /* sessionStorage.clear(); */
+      this.route.navigateByUrl('');
     }
   }
 }

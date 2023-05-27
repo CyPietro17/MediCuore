@@ -25,6 +25,9 @@ export class RepartiComponent implements OnInit {
   reparti$!: Observable<Reparto[]>;
 
   ngOnInit(): void {
+    if (sessionStorage.getItem('authenticatedUser') == null) {
+      this.route.navigateByUrl('');
+    }
     this.isLoggedIn = this.authService.isUserLoggedIn();
     this.webService.getReparti().subscribe({
       next: () => {

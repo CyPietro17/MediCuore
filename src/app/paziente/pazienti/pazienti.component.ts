@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WebService } from '../../services/web.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Paziente, PazienteRequest } from 'src/types/Paziente';
 import { Observable } from 'rxjs';
 import { Ricovero } from 'src/types/Ricovero';
@@ -11,7 +11,11 @@ import { Ricovero } from 'src/types/Ricovero';
   styleUrls: ['./pazienti.component.css'],
 })
 export class PazientiComponent implements OnInit {
-  constructor(private webService: WebService, private route: ActivatedRoute) {}
+  constructor(
+    private webService: WebService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   pazienti$!: Observable<Paziente[]>;
 
@@ -20,6 +24,9 @@ export class PazientiComponent implements OnInit {
   id: number = this.route.snapshot.params['id'];
 
   ngOnInit(): void {
+    if (sessionStorage.getItem('authenticatedUser') == null) {
+      this.router.navigateByUrl('');
+    }
     this.pazienti$ = this.webService.getPazienti();
   }
 

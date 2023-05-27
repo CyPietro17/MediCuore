@@ -15,7 +15,7 @@ import { NewPazienteComponent } from './paziente/new-paziente/new-paziente.compo
 import { ImpiegatiComponent } from './personale/impiegati/impiegati.component';
 import { NewImpiegatoComponent } from './personale/new-impiegato/new-impiegato.component';
 import { RegisterComponent } from './register/register.component';
-import { NewRicoveroComponent } from './ricovero/ricoveri/new-ricovero/new-ricovero.component';
+import { NewRicoveroComponent } from './ricovero/new-ricovero/new-ricovero.component';
 import { RicoveriAttiviComponent } from './ricovero/ricoveri-attivi/ricoveri-attivi.component';
 import { RicoveriPazienteComponent } from './ricovero/ricoveri-paziente/ricoveri-paziente.component';
 import { InterceptService } from './services/intercept.service';

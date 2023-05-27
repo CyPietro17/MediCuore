@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { PazienteRequest } from 'src/types/Paziente';
 
 @Component({
@@ -7,8 +8,17 @@ import { PazienteRequest } from 'src/types/Paziente';
   templateUrl: './new-paziente.component.html',
   styleUrls: ['./new-paziente.component.css'],
 })
-export class NewPazienteComponent {
+export class NewPazienteComponent implements OnInit {
+  constructor(private route: Router) {}
+
   @Output() paziente = new EventEmitter<PazienteRequest>();
+
+  ngOnInit(): void {
+    if (sessionStorage.getItem('authenticatedUser') === 'admin01') {
+      sessionStorage.clear();
+      this.route.navigateByUrl('');
+    }
+  }
 
   newPaziente = new FormGroup({
     t_nome: new FormControl('', Validators.required),

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ImpiegatoRequest } from 'src/types/Impiegato';
 import { Reparto } from 'src/types/Reparto';
@@ -11,10 +11,16 @@ import { Router } from '@angular/router';
   templateUrl: './new-impiegato.component.html',
   styleUrls: ['./new-impiegato.component.css'],
 })
-export class NewImpiegatoComponent {
+export class NewImpiegatoComponent implements OnInit {
   constructor(private webService: WebService, private route: Router) {}
 
   reparti$: Observable<Reparto[]> = this.webService.getReparti();
+
+  ngOnInit(): void {
+    if (sessionStorage.getItem('authenticatedUser') != 'admin01') {
+      this.route.navigateByUrl('');
+    }
+  }
 
   newImpiegato = new FormGroup({
     t_nome: new FormControl('', Validators.required),

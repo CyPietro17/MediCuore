@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { RepartoRequest } from 'src/types/Reparto';
 
 @Component({
@@ -7,8 +8,14 @@ import { RepartoRequest } from 'src/types/Reparto';
   templateUrl: './new-reparto.component.html',
   styleUrls: ['./new-reparto.component.css'],
 })
-export class NewRepartoComponent {
-  constructor() {}
+export class NewRepartoComponent implements OnInit {
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    if (sessionStorage.getItem('authenticatedUser') != 'admin01') {
+      this.router.navigateByUrl('');
+    }
+  }
 
   @Output() reparto = new EventEmitter<RepartoRequest>();
 

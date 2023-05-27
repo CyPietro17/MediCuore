@@ -7,7 +7,7 @@ import { RicoveriComponent } from './ricovero/ricoveri/ricoveri.component';
 import { PazientiComponent } from './paziente/pazienti/pazienti.component';
 import { ImpiegatiComponent } from './personale/impiegati/impiegati.component';
 import { RegisterComponent } from './register/register.component';
-import { NewRicoveroComponent } from './ricovero/ricoveri/new-ricovero/new-ricovero.component';
+import { NewRicoveroComponent } from './ricovero/new-ricovero/new-ricovero.component';
 import { RicoveriAttiviComponent } from './ricovero/ricoveri-attivi/ricoveri-attivi.component';
 import { NewImpiegatoComponent } from './personale/new-impiegato/new-impiegato.component';
 import { RicoveriPazienteComponent } from './ricovero/ricoveri-paziente/ricoveri-paziente.component';

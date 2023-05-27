@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WebService } from '../../services/web.service';
 import { Impiegato } from 'src/types/Impiegato';
 import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Reparto } from 'src/types/Reparto';
 
 @Component({
@@ -11,7 +11,11 @@ import { Reparto } from 'src/types/Reparto';
   styleUrls: ['./impiegati-reparto.component.css'],
 })
 export class ImpiegatiRepartoComponent implements OnInit {
-  constructor(private webService: WebService, private route: ActivatedRoute) {}
+  constructor(
+    private webService: WebService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   admin!: boolean;
   id: number = this.route.snapshot.params['id'];
@@ -23,6 +27,9 @@ export class ImpiegatiRepartoComponent implements OnInit {
   rep!: Reparto;
 
   ngOnInit(): void {
+    if (sessionStorage.getItem('authenticatedUser') == null) {
+      this.router.navigateByUrl('');
+    }
     this.impiegati$ = this.webService.getImpiegatiReparto(this.id);
     this.reparto$ = this.webService.getReparto(this.id);
     this.reparto$.subscribe({
@@ -33,11 +40,5 @@ export class ImpiegatiRepartoComponent implements OnInit {
         }
       },
     });
-  } /*
-
-  isAdmin(): boolean {
-    if (sessionStorage.getItem('authenticatedUser') === 'admin01') {
-      return true;
-    } else return false;
-  } */
+  }
 }

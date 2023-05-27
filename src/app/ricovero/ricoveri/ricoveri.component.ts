@@ -24,6 +24,9 @@ export class RicoveriComponent implements OnInit {
   reparto$!: Reparto;
 
   ngOnInit(): void {
+    if (sessionStorage.getItem('authenticatedUser') == null) {
+      this.router.navigateByUrl('');
+    }
     this.ricoveri$ = this.webService.getRicoveriReparto(this.id);
     this.webService.getReparto(this.id).subscribe({
       next: (res) => {

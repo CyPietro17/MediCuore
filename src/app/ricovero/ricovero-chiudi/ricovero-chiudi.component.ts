@@ -19,6 +19,9 @@ export class RicoveroChiudiComponent implements OnInit {
   ricovero$!: Ricovero;
 
   ngOnInit(): void {
+    if (sessionStorage.getItem('authenticatedUser') == null) {
+      this.router.navigateByUrl('');
+    }
     this.webService.cercaRicovero(this.id).subscribe({
       next: (res) => {
         this.ricovero$ = res;

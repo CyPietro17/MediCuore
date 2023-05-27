@@ -1,7 +1,6 @@
+<h2 style="text-align: center">Impiegati {{ rep.t_nome }}</h2>
+<hr class="container" />
 <div class="container">
-  <h2 style="text-align: center">Impiegati</h2>
-  <hr />
-
   <table class="table table-secondary table-hover">
     <thead>
       <tr class="table-success">
@@ -9,9 +8,7 @@
         <th style="text-align: center">Data di Nascita</th>
         <th style="text-align: center">Codice Fiscale</th>
         <th style="text-align: center">Professione</th>
-        <th style="text-align: center">Reparto</th>
-        <th style="text-align: center">Stato Assunzione</th>
-        <th style="text-align: center">Azioni</th>
+        <th style="text-align: center" *ngIf="admin">Azioni</th>
       </tr>
     </thead>
     <tbody>
@@ -24,21 +21,15 @@
         <td style="text-align: center">
           {{ impiegato.t_professione }}
         </td>
-        <td style="text-align: center">{{ impiegato.t_reparto.t_nome }}</td>
-        <td style="text-align: center">{{ impiegato.b_active }}</td>
-        <td style="text-align: center">
-          <a
-            routerLink="/reparti/{{ impiegato.n_id }}"
-            style="text-decoration: none"
-            ><span class="pi pi-list" style="padding-right: 10px"></span
-          ></a>
+        <td style="text-align: center" *ngIf="admin">
+          <span>
+            <a
+              routerLink="/impiegati/dimetti/{{ impiegato.n_id }}"
+              style="text-decoration: none"
+              ><span class="pi pi-sign-out"></span></a
+          ></span>
         </td>
       </tr>
     </tbody>
   </table>
-  <div class="container" *ngIf="admin">
-    <button class="btn btn-success btn-lg" (click)="add()">
-      Aggiungi Impiegato
-    </button>
-  </div>
 </div>

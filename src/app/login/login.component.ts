@@ -17,13 +17,15 @@ export class LoginComponent implements OnInit {
     private webService: WebService
   ) {}
 
-  errorMessage = 'Invalid Credentials';
+  errorMessage = 'Invalid Credentials! username e/o password non valide';
   successMessage!: string;
   invalidLogin = false;
   loginSuccess = false;
   authenticate: boolean = true;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    sessionStorage.clear();
+  }
 
   controllUser = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -67,6 +69,7 @@ export class LoginComponent implements OnInit {
         () => {
           this.invalidLogin = true;
           this.loginSuccess = false;
+          alert(this.errorMessage);
         }
       );
   }

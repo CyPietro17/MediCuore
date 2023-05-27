@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WebService } from '../services/web.service';
+import { WebService } from '../../services/web.service';
 import { Impiegato, ImpiegatoRequest } from 'src/types/Impiegato';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -40,6 +40,18 @@ export class ImpiegatiComponent implements OnInit {
       },
       error: () => {
         console.log('Impossibile aggiungere Impiegato');
+      },
+    });
+  }
+
+  dimettiImp(id: number) {
+    this.webService.dimissioniImpiegato(id).subscribe({
+      next: (res) => {
+        this.impiegati$ = this.webService.getImpiegatiAssunti();
+        this.route.navigateByUrl('/impiegati');
+      },
+      error: (err) => {
+        alert('Dimissioni fallite!');
       },
     });
   }

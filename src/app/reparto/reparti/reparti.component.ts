@@ -1,9 +1,9 @@
 import { Route, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { WebService } from '../services/web.service';
+import { WebService } from '../../services/web.service';
 import { Component, OnInit } from '@angular/core';
 import { Reparto, RepartoRequest } from 'src/types/Reparto';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-reparti',

@@ -1,0 +1,35 @@
+<div class="container">
+  <h2 style="text-align: center">
+    <a routerLink="/impiegati" style="text-decoration: none"
+      ><span
+        class="pi pi-chevron-circle-left"
+        style="padding-right: 10px"
+      ></span
+    ></a>
+    Impiegati dimessi
+  </h2>
+  <hr />
+
+  <table class="table table-secondary table-hover">
+    <thead>
+      <tr class="table-success">
+        <th style="text-align: center; width: 25%">Nome e Cognome</th>
+        <th style="text-align: center; width: 25%">Data di Nascita</th>
+        <th style="text-align: center; width: 25%">Codice Fiscale</th>
+        <th style="text-align: center; width: 25%">Professione</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let impiegato of dimessi$ | async">
+        <td style="text-align: center">
+          {{ impiegato.t_nome }} {{ impiegato.t_cognome }}
+        </td>
+        <td style="text-align: center">{{ impiegato.d_dataNascita }}</td>
+        <td style="text-align: center">{{ impiegato.t_codiceFiscale }}</td>
+        <td style="text-align: center">
+          {{ impiegato.t_professione }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

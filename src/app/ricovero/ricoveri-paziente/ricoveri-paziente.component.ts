@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WebService } from '../services/web.service';
+import { WebService } from '../../services/web.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Ricovero } from 'src/types/Ricovero';
@@ -16,15 +16,13 @@ export class RicoveriPazienteComponent implements OnInit {
   id: number = this.route.snapshot.params['id'];
 
   ricoveri$!: Observable<Ricovero[]>;
-  paziente$!: Observable<Paziente>;
-  paz!: Paziente;
+  paziente$!: Paziente;
 
   ngOnInit(): void {
     this.ricoveri$ = this.webService.getRicoveriPaziente(this.id);
-    this.paziente$ = this.webService.paziente(this.id);
-    this.paziente$.subscribe({
+    this.webService.paziente(this.id).subscribe({
       next: (res) => {
-        this.paz = res;
+        this.paziente$ = res;
       },
       error: (err) => {
         alert('Risorse non trovate! Cambiare pagina.');

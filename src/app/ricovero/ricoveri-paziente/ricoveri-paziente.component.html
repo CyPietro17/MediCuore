@@ -1,33 +1,36 @@
 <h2 style="text-align: center">
-  Ricoveri: {{ paz.t_nome }} {{ paz.t_cognome }}
+  Ricoveri: {{ paziente$.t_nome }} {{ paziente$.t_cognome }}
 </h2>
 <hr class="container" />
 <div class="container">
   <table class="table table-secondary table-hover">
     <thead>
       <tr class="table-success">
-        <th style="text-align: center">ID</th>
-        <th style="text-align: center">Inizio Ricovero</th>
-        <th style="text-align: center">Fine Ricovero</th>
-        <th style="text-align: center">Reparto</th>
-        <th style="text-align: center">Azioni</th>
+        <th style="text-align: center; width: 33.3%">Inizio Ricovero</th>
+        <th style="text-align: center; width: 33.3%">Fine Ricovero</th>
+        <th style="text-align: center; width: 33.3%">Reparto</th>
+        <!-- <th style="text-align: center; width: 25%">Azioni</th> -->
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let ricovero of ricoveri$ | async">
-        <td style="text-align: center">{{ ricovero.n_id }}</td>
         <td style="text-align: center">{{ ricovero.d_inizioRicovero }}</td>
-        <td style="text-align: center">{{ ricovero.d_fineRicovero }}</td>
+        <td style="text-align: center" *ngIf="ricovero.d_fineRicovero != null">
+          {{ ricovero.d_fineRicovero }}
+        </td>
+        <td style="text-align: center" *ngIf="ricovero.d_fineRicovero == null">
+          Ricovero aperto
+        </td>
         <td style="text-align: center">
           {{ ricovero.t_reparto.t_nome }}
         </td>
-        <td style="text-align: center">
+        <!-- <td style="text-align: center">
           <a
             routerLink="/impiegati/{{ ricovero.t_reparto.n_id }}"
             style="text-decoration: none"
             ><span class="pi pi-building" style="padding-right: 10px"></span
           ></a>
-        </td>
+        </td> -->
       </tr>
     </tbody>
   </table>

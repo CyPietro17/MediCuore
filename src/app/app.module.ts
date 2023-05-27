@@ -6,22 +6,23 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponent } from './error/error.component';
-import { RepartiComponent } from './reparti/reparti.component';
+import { RepartiComponent } from './reparto/reparti/reparti.component';
 import { CoreModule } from './core/core.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { NewRepartoComponent } from './new-reparto/new-reparto.component';
-import { PazientiComponent } from './pazienti/pazienti.component';
-import { RicoveriComponent } from './ricoveri/ricoveri.component';
-import { NewPazienteComponent } from './new-paziente/new-paziente.component';
-import { ImpiegatiComponent } from './impiegati/impiegati.component';
-import { NewImpiegatoComponent } from './new-impiegato/new-impiegato.component';
-import { ImpiegatiRepartoComponent } from './impiegati-reparto/impiegati-reparto.component';
+import { NewRepartoComponent } from './reparto/new-reparto/new-reparto.component';
+import { PazientiComponent } from './paziente/pazienti/pazienti.component';
+import { NewPazienteComponent } from './paziente/new-paziente/new-paziente.component';
+import { ImpiegatiComponent } from './personale/impiegati/impiegati.component';
+import { NewImpiegatoComponent } from './personale/new-impiegato/new-impiegato.component';
 import { RegisterComponent } from './register/register.component';
-import { NewRicoveroComponent } from './new-ricovero/new-ricovero.component';
-import { RicoveriAttiviComponent } from './ricoveri-attivi/ricoveri-attivi.component';
-import { RicoveriPazienteComponent } from './ricoveri-paziente/ricoveri-paziente.component';
+import { NewRicoveroComponent } from './ricovero/ricoveri/new-ricovero/new-ricovero.component';
+import { RicoveriAttiviComponent } from './ricovero/ricoveri-attivi/ricoveri-attivi.component';
+import { RicoveriPazienteComponent } from './ricovero/ricoveri-paziente/ricoveri-paziente.component';
 import { InterceptService } from './services/intercept.service';
-import { RicoveroChiudiComponent } from './ricovero-chiudi/ricovero-chiudi.component';
+import { RicoveroChiudiComponent } from './ricovero/ricovero-chiudi/ricovero-chiudi.component';
+import { ImpiegatiRepartoComponent } from './personale/impiegati-reparto/impiegati-reparto.component';
+import { RicoveriComponent } from './ricovero/ricoveri/ricoveri.component';
+import { ImpiegatiDimessiComponent } from './personale/impiegati-dimessi/impiegati-dimessi.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { RicoveroChiudiComponent } from './ricovero-chiudi/ricovero-chiudi.compo
     RicoveriAttiviComponent,
     RicoveriPazienteComponent,
     RicoveroChiudiComponent,
+    ImpiegatiDimessiComponent,
   ],
   imports: [
     BrowserModule,

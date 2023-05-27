@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ImpiegatoRequest } from 'src/types/Impiegato';
 import { Reparto } from 'src/types/Reparto';
-import { WebService } from '../services/web.service';
+import { WebService } from '../../services/web.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 

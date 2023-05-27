@@ -1,5 +1,5 @@
 import { FineRicoveroRequest, Ricovero } from 'src/types/Ricovero';
-import { WebService } from './../services/web.service';
+import { WebService } from '../../services/web.service';
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -23,7 +23,7 @@ export class RicoveriAttiviComponent {
   add() {
     this.router.navigate(['ricoveri/nuovo']);
   }
-  //TODO: CONTROLLARE, NON VA BENE COSI'
+  /* //TODO: CONTROLLARE, NON VA BENE COSI'
   dimissioni(id: number): boolean {
     let a: boolean = this.bool;
     this.webService.cercaRicovero(id).subscribe({
@@ -43,5 +43,5 @@ export class RicoveriAttiviComponent {
         console.log('Impossbile procedere con le dimissioni del paziente!');
       },
     });
-  }
+  } */
 }

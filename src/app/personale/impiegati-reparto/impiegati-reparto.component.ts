@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WebService } from '../services/web.service';
+import { WebService } from '../../services/web.service';
 import { Impiegato } from 'src/types/Impiegato';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
@@ -13,6 +13,7 @@ import { Reparto } from 'src/types/Reparto';
 export class ImpiegatiRepartoComponent implements OnInit {
   constructor(private webService: WebService, private route: ActivatedRoute) {}
 
+  admin!: boolean;
   id: number = this.route.snapshot.params['id'];
 
   impiegati$!: Observable<Impiegato[]>;
@@ -27,7 +28,16 @@ export class ImpiegatiRepartoComponent implements OnInit {
     this.reparto$.subscribe({
       next: (res) => {
         this.rep = res;
+        if (sessionStorage.getItem('authenticatedUser') === 'admin01') {
+          this.admin = true;
+        }
       },
     });
-  }
+  } /*
+
+  isAdmin(): boolean {
+    if (sessionStorage.getItem('authenticatedUser') === 'admin01') {
+      return true;
+    } else return false;
+  } */
 }

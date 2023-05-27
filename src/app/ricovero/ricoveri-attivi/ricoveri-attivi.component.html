@@ -1,30 +1,46 @@
-<h2 style="text-align: center">Ricoveri {{ rep.t_nome }}</h2>
+<h2 style="text-align: center">Ricoveri Attivi</h2>
 <hr class="container" />
 <div class="container">
   <table class="table table-secondary table-hover">
     <thead>
       <tr class="table-success">
-        <th style="text-align: center">Inizio Ricovero</th>
         <th style="text-align: center">Nome Paziente</th>
         <th style="text-align: center">CF Paziente</th>
+        <th style="text-align: center">Inizio Ricovero</th>
+        <th style="text-align: center">Reparto</th>
         <th style="text-align: center">Azioni</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let ricovero of ricoveri$ | async">
-        <td style="text-align: center">{{ ricovero.d_inizioRicovero }}</td>
         <td style="text-align: center">
           {{ ricovero.n_paziente.t_nome }} {{ ricovero.n_paziente.t_cognome }}
         </td>
         <td style="text-align: center">
           {{ ricovero.n_paziente.t_codiceFiscale }}
         </td>
+        <td style="text-align: center">{{ ricovero.d_inizioRicovero }}</td>
+
+        <td style="text-align: center">{{ ricovero.t_reparto.t_nome }}</td>
         <td style="text-align: center">
-          <a routerLink="/paziente" style="text-decoration: none"
+          <a
+            routerLink="/ricoveri/paziente/{{ ricovero.n_paziente.n_id }}"
+            style="text-decoration: none"
             ><span class="pi pi-list" style="padding-right: 10px"></span
           ></a>
+          <span>
+            <a
+              routerLink="/ricoveri/chiudi/{{ ricovero.n_id }}"
+              style="text-decoration: none"
+              ><span class="pi pi-sign-out"></span></a
+          ></span>
         </td>
       </tr>
     </tbody>
   </table>
+  <div class="container">
+    <button class="btn btn-success btn-lg" (click)="add()">
+      Nuovo Ricovero
+    </button>
+  </div>
 </div>

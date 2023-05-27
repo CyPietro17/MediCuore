@@ -1,9 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FineRicoveroRequest, Ricovero } from 'src/types/Ricovero';
-import { WebService } from '../services/web.service';
+import { WebService } from '../../services/web.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
 @Component({
   selector: 'app-ricovero-chiudi',
   templateUrl: './ricovero-chiudi.component.html',
@@ -22,12 +21,10 @@ export class RicoveroChiudiComponent implements OnInit {
   ngOnInit(): void {
     this.webService.cercaRicovero(this.id).subscribe({
       next: (res) => {
-        console.log(res);
-
         this.ricovero$ = res;
       },
       error: (err) => {
-        console.log('non va');
+        alert('Risorese non trovate! Cambiare pagina');
       },
     });
   }
@@ -39,7 +36,7 @@ export class RicoveroChiudiComponent implements OnInit {
         this.router.navigate(['/ricoveri/attivi']);
       },
       error: () => {
-        console.log('Impossibile chiudere ricovero');
+        alert('Impossibile chiudere ricovero');
       },
     });
   }

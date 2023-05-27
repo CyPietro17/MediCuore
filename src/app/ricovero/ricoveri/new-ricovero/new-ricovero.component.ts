@@ -1,4 +1,4 @@
-import { WebService } from './../services/web.service';
+import { WebService } from '../../../services/web.service';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';

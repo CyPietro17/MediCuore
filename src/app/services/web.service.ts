@@ -79,6 +79,10 @@ export class WebService {
     );
   }
 
+  getImpiegatiDimessi(): Observable<Impiegato[]> {
+    return this.httpClient.get<Impiegato[]>(`${this.apiUrl}/impiegati/dimessi`);
+  }
+
   getPazienti(): Observable<Paziente[]> {
     return this.httpClient.get<Paziente[]>(`${this.apiUrl}/pazienti/tutti`);
   }
@@ -102,6 +106,12 @@ export class WebService {
 
   getImpiegatiAssunti(): Observable<Impiegato[]> {
     return this.httpClient.get<Impiegato[]>(`${this.apiUrl}/impiegati/assunti`);
+  }
+
+  dimissioniImpiegato(id: number): Observable<Impiegato> {
+    return this.httpClient.delete<Impiegato>(
+      `${this.apiUrl}/impiegati/dimissione?id=` + id
+    );
   }
 
   nuovoImpiegato(impiegato: ImpiegatoRequest): Observable<Impiegato> {

@@ -15,10 +15,13 @@ export class ImpiegatiDimessiComponent implements OnInit {
   dimessi$!: Observable<Impiegato[]>;
 
   ngOnInit(): void {
-    if (sessionStorage.getItem('authenticatedUser') === 'admin01') {
+    if (
+      sessionStorage.getItem('authenticatedUser') != null &&
+      sessionStorage.getItem('role') === 'ADMIN'
+    ) {
       this.dimessi$ = this.webService.getImpiegatiDimessi();
     } else {
-      this.route.navigateByUrl('');
+      this.route.navigateByUrl('/error');
     }
   }
 }

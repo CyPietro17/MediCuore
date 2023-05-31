@@ -23,7 +23,11 @@ export class RicoveriPazienteComponent implements OnInit {
   paziente$!: Paziente;
 
   ngOnInit(): void {
-    if (sessionStorage.getItem('authenticatedUser') == null) {
+    if (
+      sessionStorage.getItem('authenticatedUser') == null ||
+      (sessionStorage.getItem('role') != 'USER' &&
+        sessionStorage.getItem('role') != 'ADMIN')
+    ) {
       this.router.navigateByUrl('');
     }
     this.ricoveri$ = this.webService.getRicoveriPaziente(this.id);

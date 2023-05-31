@@ -27,7 +27,11 @@ export class ImpiegatiRepartoComponent implements OnInit {
   rep!: Reparto;
 
   ngOnInit(): void {
-    if (sessionStorage.getItem('authenticatedUser') == null) {
+    if (
+      sessionStorage.getItem('authenticatedUser') == null ||
+      (sessionStorage.getItem('role') != 'USER' &&
+        sessionStorage.getItem('role') != 'ADMIN')
+    ) {
       this.router.navigateByUrl('');
     }
     this.impiegati$ = this.webService.getImpiegatiReparto(this.id);

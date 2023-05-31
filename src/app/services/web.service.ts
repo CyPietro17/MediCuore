@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
 export class WebService {
   constructor(private httpClient: HttpClient, private route: Router) {}
 
-  private readonly apiUrl: string = `http://localhost:8080`;
+  private readonly apiUrl: string = `http://localhost:5003/medicuore`;
 
   getReparti(): Observable<Reparto[]> {
     return this.httpClient.get<Reparto[]>(`${this.apiUrl}/reparti`);
@@ -126,6 +126,10 @@ export class WebService {
   }
 
   roleUser(user: UserRequest): Observable<string> {
-    return this.httpClient.get<string>(`${this.apiUrl}/role`);
+    return this.httpClient.post<string>(`${this.apiUrl}/role`, user);
+  }
+
+  login(user: UserRequest): Observable<User> {
+    return this.httpClient.post<User>(`${this.apiUrl}/login`, user);
   }
 }

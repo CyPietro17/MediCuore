@@ -17,7 +17,11 @@ export class RicoveriAttiviComponent {
   ricoveri$!: Observable<Ricovero[]>;
 
   ngOnInit(): void {
-    if (sessionStorage.getItem('authenticatedUser') == null) {
+    if (
+      sessionStorage.getItem('authenticatedUser') == null ||
+      (sessionStorage.getItem('role') != 'USER' &&
+        sessionStorage.getItem('role') != 'ADMIN')
+    ) {
       this.router.navigateByUrl('');
     }
     this.ricoveri$ = this.webService.getRicoveriAttivi();

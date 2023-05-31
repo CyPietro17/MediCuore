@@ -17,8 +17,11 @@ export class NewImpiegatoComponent implements OnInit {
   reparti$: Observable<Reparto[]> = this.webService.getReparti();
 
   ngOnInit(): void {
-    if (sessionStorage.getItem('authenticatedUser') != 'admin01') {
-      this.route.navigateByUrl('');
+    if (
+      sessionStorage.getItem('authenticatedUser') == null &&
+      sessionStorage.getItem('role') != 'ADMIN'
+    ) {
+      this.route.navigateByUrl('/error');
     }
   }
 

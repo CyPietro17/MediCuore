@@ -24,7 +24,11 @@ export class PazientiComponent implements OnInit {
   id: number = this.route.snapshot.params['id'];
 
   ngOnInit(): void {
-    if (sessionStorage.getItem('authenticatedUser') == null) {
+    if (
+      sessionStorage.getItem('authenticatedUser') == null ||
+      (sessionStorage.getItem('role') != 'USER' &&
+        sessionStorage.getItem('role') != 'ADMIN')
+    ) {
       this.router.navigateByUrl('');
     }
     this.pazienti$ = this.webService.getPazienti();

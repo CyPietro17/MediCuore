@@ -14,7 +14,7 @@ export class AuthService {
 
   authenticationService(username: string, password: string) {
     return this.http
-      .get(`http://localhost:8080/auth`, {
+      .get(`http://localhost:5003/medicuore/auth`, {
         headers: {
           authorization: this.createBasicAuthToken(username, password),
         },

@@ -15,7 +15,11 @@ export class AppComponent implements OnInit {
   active: boolean = true;
 
   activated(): boolean {
-    if (this.route.url === '/login' || this.route.url === '/register') {
+    if (
+      this.route.url === '/login' ||
+      this.route.url === '/register' ||
+      this.route.url === '/'
+    ) {
       return (this.active = false);
     } else {
       return (this.active = true);

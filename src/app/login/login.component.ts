@@ -22,6 +22,8 @@ export class LoginComponent implements OnInit {
   invalidLogin = false;
   loginSuccess = false;
   authenticate: boolean = true;
+  nameuser!: string;
+  psw!: string;
 
   ngOnInit(): void {
     sessionStorage.clear();
@@ -49,28 +51,32 @@ export class LoginComponent implements OnInit {
   }
 
   gestAuth(): void {
-    this.authService
-      .authenticationService(
-        this.preparedRequest().username!,
-        this.preparedRequest().password!
-      )
-      .subscribe(
-        (result) => {
-          this.invalidLogin = false;
-          this.loginSuccess = true;
-          this.successMessage = 'Login Successful.';
-          /* this.webService.roleUser(this.preparedRequest()).subscribe({
-            next: (res) => {
-              sessionStorage.setItem('Role', res);
+    this.webService.login(this.preparedRequest()).subscribe({
+      next: (res) => {
+        this.nameuser = res.username;
+        sessionStorage.setItem('role', res.role);
+        this.authService
+          .authenticationService(
+            this.preparedRequest().username!,
+            this.preparedRequest().password!
+          )
+          .subscribe(
+            (result) => {
+              this.invalidLogin = false;
+              this.loginSuccess = true;
+              this.successMessage = 'Login Successful.';
+              this.route.navigate(['/reparti']);
             },
-          }); */
-          this.route.navigate(['/reparti']);
-        },
-        () => {
-          this.invalidLogin = true;
-          this.loginSuccess = false;
-          alert(this.errorMessage);
-        }
-      );
+            () => {
+              this.invalidLogin = true;
+              this.loginSuccess = false;
+              alert(this.errorMessage);
+            }
+          );
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
   }
 }

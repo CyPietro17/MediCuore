@@ -12,8 +12,10 @@ export class NewRepartoComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    if (sessionStorage.getItem('authenticatedUser') != 'admin01') {
+    if (sessionStorage.getItem('authenticatedUser') == null) {
       this.router.navigateByUrl('');
+    } else if (sessionStorage.getItem('role') != 'ADMIN') {
+      this.router.navigateByUrl('/error');
     }
   }
 

@@ -14,8 +14,11 @@ export class NewPazienteComponent implements OnInit {
   @Output() paziente = new EventEmitter<PazienteRequest>();
 
   ngOnInit(): void {
-    if (sessionStorage.getItem('authenticatedUser') === 'admin01') {
-      sessionStorage.clear();
+    if (
+      sessionStorage.getItem('authenticatedUser') == null ||
+      (sessionStorage.getItem('role') != 'USER' &&
+        sessionStorage.getItem('role') != 'ADMIN')
+    ) {
       this.route.navigateByUrl('');
     }
   }

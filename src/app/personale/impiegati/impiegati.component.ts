@@ -18,7 +18,11 @@ export class ImpiegatiComponent implements OnInit {
   impiegati$!: Observable<Impiegato[]>;
 
   ngOnInit(): void {
-    if (sessionStorage.getItem('authenticatedUser') == null) {
+    if (
+      sessionStorage.getItem('authenticatedUser') == null ||
+      (sessionStorage.getItem('role') != 'USER' &&
+        sessionStorage.getItem('role') != 'ADMIN')
+    ) {
       this.route.navigateByUrl('');
     }
     this.impiegati$ = this.webService.getImpiegatiAssunti();

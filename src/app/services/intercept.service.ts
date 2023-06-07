@@ -40,23 +40,4 @@ export class InterceptService implements HttpInterceptor {
       return next.handle(req);
     }
   }
-
-  /* intercept(
-    req: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
-    let AuthHeader: string;
-    let AuthToken = sessionStorage.getItem('token');
-
-    AuthHeader = AuthToken!;
-    console.log('ìAuthToken:::', AuthToken);
-
-    const authReq = req.clone({
-      headers: req.headers.set('Authorization', 'ciao'),
-    });
-    console.log(authReq);
-
-
-    return next.handle(authReq);
-  } */
 }

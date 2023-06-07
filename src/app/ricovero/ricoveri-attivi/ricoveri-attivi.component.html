@@ -26,12 +26,18 @@
           <a
             routerLink="/ricoveri/paziente/{{ ricovero.n_paziente.n_id }}"
             style="text-decoration: none"
+            title="Ricoveri {{ ricovero.n_paziente.t_cognome }} {{
+              ricovero.n_paziente.t_nome
+            }}"
             ><span class="pi pi-list" style="padding-right: 10px"></span
           ></a>
           <span>
             <a
               routerLink="/ricoveri/chiudi/{{ ricovero.n_id }}"
               style="text-decoration: none"
+              title="Chiudi Ricovero {{ ricovero.n_paziente.t_cognome }} {{
+                ricovero.n_paziente.t_nome
+              }}"
               ><span class="pi pi-sign-out"></span></a
           ></span>
         </td>

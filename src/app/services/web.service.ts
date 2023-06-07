@@ -16,9 +16,10 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class WebService {
-  constructor(private httpClient: HttpClient, private route: Router) {}
+  constructor(private httpClient: HttpClient) {}
 
-  private readonly apiUrl: string = `http://localhost:5003/medicuore`;
+  private readonly apiUrl: string = `http://medicuore.eu-north-1.elasticbeanstalk.com`;
+  //medicuore.eu-north-1.elasticbeanstalk.com
 
   getReparti(): Observable<Reparto[]> {
     return this.httpClient.get<Reparto[]>(`${this.apiUrl}/reparti`);

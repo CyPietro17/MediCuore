@@ -8,6 +8,7 @@
       ><span
         class="pi pi-chevron-circle-right"
         style="padding-left: 10px"
+        title="Impiegati Dimessi"
       ></span
     ></a>
   </h2>
@@ -42,6 +43,7 @@
             type="submit"
             class="btn btn-outline-light"
             (click)="dimettiImp(impiegato.n_id)"
+            title="Dimissioni {{ impiegato.t_cognome }} {{ impiegato.t_nome }}"
           >
             <span class="pi pi-sign-out"></span>
           </button>
@@ -50,7 +52,11 @@
     </tbody>
   </table>
   <div class="container" *ngIf="admin">
-    <button class="btn btn-success btn-lg" (click)="add()">
+    <button
+      class="btn btn-success btn-lg"
+      (click)="add()"
+      style="padding-bottom: 20px"
+    >
       Aggiungi Impiegato
     </button>
   </div>

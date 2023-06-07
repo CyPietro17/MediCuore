@@ -25,6 +25,7 @@
           <a
             routerLink="/ricoveri/paziente/{{ paziente.n_id }}"
             style="text-decoration: none"
+            title="Ricoveri {{ paziente.t_cognome }} {{ paziente.t_nome }}"
             ><span class="pi pi-list" style="padding-right: 10px"></span
           ></a>
         </td>
@@ -41,63 +42,3 @@
     </div>
   </div>
 </div>
-<!-- <table>
-  <ng-template pTemplate="header">
-    <tr>
-      <th style="width: 25%">Nome e Cognome</th>
-      <th style="width: 25%">Data di Nascita</th>
-      <th style="width: 25%">Codice Fiscale</th>
-      <th style="width: 25%">Attualmente Ricoverato</th>
-    </tr>
-  </ng-template>
-  <ng-template
-    pTemplate="groupheader"
-    let-rowIndex="rowIndex"
-    let-expanded="expanded"
-  >
-    <tr *ngFor="let paziente of pazienti$ | async">
-      <td>
-        <button
-          type="button"
-          pButton
-          pRipple
-          pRowToggler="ricoveri"
-          class="p-button-text p-button-rounded p-button-plain mr-2"
-          icon="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
-        ></button>
-        <span class="font-bold ml-2"
-          >{{ paziente.t_nome }} {{ paziente.t_cognome }}</span
-        >
-      </td>
-      <td style="text-align: center">{{ paziente.d_dataNascita }}</td>
-      <td style="text-align: center">{{ paziente.t_codiceFiscale }}</td>
-      <td style="text-align: center">
-        {{ paziente.b_ricoverato }}
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="rowexpansion">
-    <ng-template pTemplate="header">
-      <tr>
-        <th style="width: 25%">#</th>
-        <th style="width: 25%">Inizio Ricovero</th>
-        <th style="width: 25%">Fine Ricovero</th>
-        <th style="width: 25%">Reparto</th>
-      </tr>
-    </ng-template>
-    <tr *ngFor="let ricovero of ricoveri$ | async">
-      <td>
-        {{ ricovero.n_id }}
-      </td>
-      <td>
-        {{ ricovero.d_inizioRicovero }}
-      </td>
-      <td>
-        {{ ricovero.d_fineRicovero }}
-      </td>
-      <td>
-        {{ ricovero.t_reparto }}
-      </td>
-    </tr>
-  </ng-template>
-</table> -->

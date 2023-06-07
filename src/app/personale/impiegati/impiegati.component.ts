@@ -30,7 +30,7 @@ export class ImpiegatiComponent implements OnInit {
   }
 
   getRole(): boolean {
-    if (sessionStorage.getItem('authenticatedUser') === 'admin01') {
+    if (sessionStorage.getItem('role') === 'ADMIN') {
       return (this.admin = true);
     }
     return (this.admin = false);

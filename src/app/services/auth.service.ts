@@ -14,7 +14,7 @@ export class AuthService {
 
   authenticationService(username: string, password: string) {
     return this.http
-      .get(`http://localhost:5003/medicuore/auth`, {
+      .get(`http://medicuore.eu-north-1.elasticbeanstalk.com/auth`, {
         headers: {
           authorization: this.createBasicAuthToken(username, password),
         },

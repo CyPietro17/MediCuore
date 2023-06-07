@@ -1,5 +1,4 @@
 import { Router } from '@angular/router';
-import { WebService } from './services/web.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -20,6 +19,12 @@ export class AppComponent implements OnInit {
       this.route.url === '/register' ||
       this.route.url === '/'
     ) {
+      return (this.active = false);
+    } else if (
+      sessionStorage.getItem('authenticatedUser') == null ||
+      sessionStorage.getItem('role') == null
+    ) {
+      this.route.navigateByUrl('');
       return (this.active = false);
     } else {
       return (this.active = true);

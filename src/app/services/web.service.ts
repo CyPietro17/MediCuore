@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
 import {
   FineRicoveroRequest,
   InizioRicoveroRequest,
@@ -10,7 +10,6 @@ import { Reparto, RepartoRequest } from 'src/types/Reparto';
 import { Paziente, PazienteRequest } from 'src/types/Paziente';
 import { Impiegato, ImpiegatoRequest } from 'src/types/Impiegato';
 import { User, UserRequest } from 'src/types/User';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +17,7 @@ import { Router } from '@angular/router';
 export class WebService {
   constructor(private httpClient: HttpClient) {}
 
-  private readonly apiUrl: string = `http://localhost:8080`;
+  private readonly apiUrl: string = `https://meduicuore-webbapp-api-pietro-salvatore95-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/medicuore`;
   //medicuore.eu-north-1.elasticbeanstalk.com
 
   getReparti(): Observable<Reparto[]> {

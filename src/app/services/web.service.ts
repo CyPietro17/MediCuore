@@ -17,7 +17,7 @@ import { User, UserRequest } from 'src/types/User';
 export class WebService {
   constructor(private httpClient: HttpClient) {}
 
-  private readonly apiUrl: string = `https://meduicuore-webbapp-api-pietro-salvatore95-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/medicuore`;
+  private readonly apiUrl: string = `https://meduicuore-api-git-pietro-salvatore95-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/medicuore`;
   //medicuore.eu-north-1.elasticbeanstalk.com
 
   getReparti(): Observable<Reparto[]> {

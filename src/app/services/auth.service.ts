@@ -15,7 +15,7 @@ export class AuthService {
   authenticationService(username: string, password: string) {
     return this.http
       .get(
-        `https://meduicuore-webbapp-api-pietro-salvatore95-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/medicuore/auth`,
+        `https://meduicuore-api-git-pietro-salvatore95-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/medicuore/auth`,
         {
           headers: {
             authorization: this.createBasicAuthToken(username, password),

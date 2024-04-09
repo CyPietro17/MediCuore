@@ -1,6 +1,6 @@
 <div class="container">
   <h2 style="text-align: center">
-    Ricovero del {{ ricovero$.d_inizioRicovero }} di
+    Ricovero del {{ ricovero$.d_inizioRicovero | date : "dd/MM/yyyy" }} di
     {{ ricovero$.n_paziente.t_cognome }} {{ ricovero$.n_paziente.t_nome }}
   </h2>
   <hr class="container" />
@@ -33,12 +33,12 @@
       </div>
       <div class="form-floating mb-3">
         <input
-          type="date"
+          type="text"
           class="form-control"
           id="floatingInput"
           placeholder="Inizio Ricovero"
           disabled
-          value="{{ ricovero$.d_inizioRicovero }}"
+          value="{{ ricovero$.d_inizioRicovero | date : 'dd/MM/yyyy' }}"
         />
         <label for="floatingInput">Inizio Ricovero</label>
       </div>

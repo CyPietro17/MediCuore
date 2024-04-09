@@ -1,0 +1,46 @@
+<tr>
+  <td>
+    <mat-form-field class="input-search">
+      <mat-label>Nome</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="data.t_nome"
+        (keypress)="filterImpDimessi()"
+      />
+    </mat-form-field>
+  </td>
+  <td>
+    <mat-form-field class="input-search">
+      <mat-label>Cognome</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="data.t_cognome"
+        (keypress)="filterImpDimessi()"
+      />
+    </mat-form-field>
+  </td>
+  <td>
+    <mat-form-field class="input-search">
+      <mat-label>Codice Fiscale</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="data.t_codiceFiscale"
+        (keypress)="filterImpDimessi()"
+      />
+    </mat-form-field>
+  </td>
+  <td>
+    <mat-form-field class="input-search">
+      <mat-label>Professione</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="data.t_professione"
+        (keypress)="filterImpDimessi()"
+      />
+    </mat-form-field>
+  </td>
+</tr>

@@ -15,6 +15,7 @@ export interface ImpiegatoRequest {
   t_nome: string | null | undefined;
   t_cognome: string | null | undefined;
   d_dataNascita: Date | null;
+  t_codiceFiscale: string | null | undefined;
   t_professione: string | null | undefined;
   n_reparto: number | null | undefined;
 }

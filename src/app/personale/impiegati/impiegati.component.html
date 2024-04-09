@@ -1,4 +1,374 @@
-<div class="container">
+<mat-card class="container" style="background-color: #f3f3f3">
+  <mat-card-header [formGroup]="form">
+    <mat-card-title style="display: flex; justify-content: center">
+      <h1>IMPIEGATI</h1>
+      <mat-slide-toggle
+        formControlName="checked"
+        *ngIf="admin"
+        style="margin-left: 10px"
+        (change)="cntrlChecked()"
+        >Impiegati Assunti</mat-slide-toggle
+      >
+
+      <div>
+        <table
+          class="example-full-width"
+          cellspacing="0"
+          *ngIf="filter"
+          style="display: flex; position: absolute; right: 10%; top: 0"
+        >
+          <tr>
+            <td>
+              <mat-form-field class="input-search">
+                <mat-label>Nome</mat-label>
+                <input matInput type="text" formControlName="t_nome" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="input-search">
+                <mat-label>Cognome</mat-label>
+                <input matInput type="text" formControlName="t_cognome" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="input-search">
+                <mat-label>Codice Fiscale</mat-label>
+                <input matInput type="text" formControlName="t_codiceFiscale" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="input-search">
+                <mat-label>Professione</mat-label>
+                <input matInput type="text" formControlName="t_professione" />
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+
+        <button
+          style="right: 2.5%; position: absolute"
+          mat-button
+          class="example-icon favorite-icon"
+          aria-label="Example icon-button with heart icon"
+          (click)="search()"
+        >
+          SEARCH
+        </button>
+      </div>
+
+      <!--       <div *ngIf="!checked">
+        <table
+          class="example-full-width"
+          cellspacing="0"
+          *ngIf="filter"
+          style="display: flex; position: absolute; right: 10%; top: 0"
+        >
+          <tr>
+            <td>
+              <mat-form-field class="input-search">
+                <mat-label>Nome</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  [(ngModel)]="data.t_nome"
+                  (keypress)="filterImpDimessi()"
+                />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="input-search">
+                <mat-label>Cognome</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  [(ngModel)]="data.t_cognome"
+                  (keypress)="filterImpDimessi()"
+                />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="input-search">
+                <mat-label>Codice Fiscale</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  [(ngModel)]="data.t_codiceFiscale"
+                  (keypress)="filterImpDimessi()"
+                />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="input-search">
+                <mat-label>Professione</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  [(ngModel)]="data.t_professione"
+                  (keypress)="filterImpDimessi()"
+                />
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+
+        <button
+          style="right: 2.5%; position: absolute"
+          mat-button
+          class="example-icon favorite-icon"
+          aria-label="Example icon-button with heart icon"
+          (click)="search()"
+        >
+          SEARCH
+        </button>
+      </div> -->
+    </mat-card-title>
+    <mat-card-subtitle *ngIf="checked" style="margin-bottom: 10px"
+      >Assunti</mat-card-subtitle
+    >
+    <mat-card-subtitle *ngIf="!checked" style="margin-bottom: 10px"
+      >Dimessi</mat-card-subtitle
+    >
+  </mat-card-header>
+  <mat-card-content *ngIf="checked">
+    <div class="mat-elevation-z8 example-container" style="overflow: auto">
+      <!-- TABLE ADMIN -->
+      <table mat-table [dataSource]="dataSource" *ngIf="admin">
+        <!-- Nome e Cognome -->
+        <ng-container matColumnDef="Nome e Cognome">
+          <th mat-header-cell *matHeaderCellDef style="text-align: center">
+            Nome e Cognome
+          </th>
+          <td mat-cell *matCellDef="let impiegato" style="text-align: center">
+            {{ impiegato?.t_nome }} {{ impiegato?.t_cognome }}
+          </td>
+        </ng-container>
+
+        <!-- Data di Nascita -->
+        <ng-container matColumnDef="Data di Nascita">
+          <th mat-header-cell *matHeaderCellDef style="text-align: center">
+            Data di Nascita
+          </th>
+          <td mat-cell *matCellDef="let impiegato" style="text-align: center">
+            {{ impiegato?.d_dataNascita | date : "dd/MM/yyyy" }}
+          </td>
+        </ng-container>
+
+        <!-- Codice Fiscale -->
+        <ng-container matColumnDef="Codice Fiscale">
+          <th mat-header-cell *matHeaderCellDef style="text-align: center">
+            Codice Fiscale
+          </th>
+          <td mat-cell *matCellDef="let impiegato" style="text-align: center">
+            {{ impiegato?.t_codiceFiscale }}
+          </td>
+        </ng-container>
+
+        <!-- Professione -->
+        <ng-container matColumnDef="Professione">
+          <th mat-header-cell *matHeaderCellDef style="text-align: center">
+            Professione
+          </th>
+          <td mat-cell *matCellDef="let impiegato" style="text-align: center">
+            {{ impiegato?.t_professione }}
+          </td>
+        </ng-container>
+
+        <!-- Reparto -->
+        <ng-container matColumnDef="Reparto">
+          <th mat-header-cell *matHeaderCellDef style="text-align: center">
+            Reparto
+          </th>
+          <td mat-cell *matCellDef="let impiegato" style="text-align: center">
+            {{ impiegato?.t_reparto?.t_nome }}
+          </td>
+        </ng-container>
+
+        <!-- Azioni -->
+        <ng-container matColumnDef="Azioni">
+          <th mat-header-cell *matHeaderCellDef style="text-align: center">
+            Dimissioni
+          </th>
+          <td mat-cell *matCellDef="let impiegato" style="text-align: center">
+            <button
+              mat-button
+              color="warn"
+              type="submit"
+              (click)="dimettiImp(impiegato.n_id)"
+              title="Dimissioni {{ impiegato.t_cognome }} {{
+                impiegato.t_nome
+              }}"
+            >
+              Dimetti <span class="pi pi-sign-out"></span>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumnsAdmin"
+          style="background-color: #d1e7dd"
+        ></tr>
+
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsAdmin"></tr>
+      </table>
+
+      <!-- TABLE USER -->
+      <table mat-table [dataSource]="dataSource" *ngIf="!admin">
+        <!-- Nome e Cognome -->
+        <ng-container matColumnDef="Nome e Cognome">
+          <th mat-header-cell *matHeaderCellDef style="text-align: center">
+            Nome e Cognome
+          </th>
+          <td mat-cell *matCellDef="let impiegato" style="text-align: center">
+            {{ impiegato.t_nome }} {{ impiegato.t_cognome }}
+          </td>
+        </ng-container>
+
+        <!-- Data di Nascita -->
+        <ng-container matColumnDef="Data di Nascita">
+          <th mat-header-cell *matHeaderCellDef style="text-align: center">
+            Data di Nascita
+          </th>
+          <td mat-cell *matCellDef="let impiegato" style="text-align: center">
+            {{ impiegato.d_dataNascita | date : "dd/MM/yyyy" }}
+          </td>
+        </ng-container>
+
+        <!-- Posti Disponibili -->
+        <ng-container matColumnDef="Codice Fiscale">
+          <th mat-header-cell *matHeaderCellDef style="text-align: center">
+            Codice Fiscale
+          </th>
+          <td mat-cell *matCellDef="let impiegato" style="text-align: center">
+            {{ impiegato.t_codiceFiscale }}
+          </td>
+        </ng-container>
+
+        <!-- Professione -->
+        <ng-container matColumnDef="Professione">
+          <th mat-header-cell *matHeaderCellDef style="text-align: center">
+            Professione
+          </th>
+          <td mat-cell *matCellDef="let impiegato" style="text-align: center">
+            {{ impiegato.t_professione }}
+          </td>
+        </ng-container>
+
+        <!-- Reparto -->
+        <ng-container matColumnDef="Reparto">
+          <th mat-header-cell *matHeaderCellDef style="text-align: center">
+            Reparto
+          </th>
+          <td mat-cell *matCellDef="let impiegato" style="text-align: center">
+            {{ impiegato.t_reparto.t_nome }}
+          </td>
+        </ng-container>
+
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumns"
+          style="background-color: #d1e7dd"
+        ></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator
+        [length]="length"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions"
+        [showFirstLastButtons]="showFirstLastButtons"
+        [pageIndex]="pageIndex"
+        aria-label="Select page"
+      >
+      </mat-paginator>
+    </div>
+  </mat-card-content>
+
+  <mat-card-content *ngIf="!checked">
+    <div
+      class="mat-elevation-z8 example-container"
+      *ngIf="admin"
+      style="overflow: auto"
+    >
+      <table mat-table [dataSource]="dataSource">
+        <!-- Nome e Cognome -->
+        <ng-container matColumnDef="Nome e Cognome">
+          <th mat-header-cell *matHeaderCellDef style="text-align: center">
+            Nome e Cognome
+          </th>
+          <td mat-cell *matCellDef="let impiegato" style="text-align: center">
+            {{ impiegato.t_nome }} {{ impiegato.t_cognome }}
+          </td>
+        </ng-container>
+
+        <!-- Data di Nascita -->
+        <ng-container matColumnDef="Data di Nascita">
+          <th mat-header-cell *matHeaderCellDef style="text-align: center">
+            Data di Nascita
+          </th>
+          <td mat-cell *matCellDef="let impiegato" style="text-align: center">
+            {{ impiegato.d_dataNascita | date : "dd/MM/yyyy" }}
+          </td>
+        </ng-container>
+
+        <!-- Codice Fiscale -->
+        <ng-container matColumnDef="Codice Fiscale">
+          <th mat-header-cell *matHeaderCellDef style="text-align: center">
+            Codice Fiscale
+          </th>
+          <td mat-cell *matCellDef="let impiegato" style="text-align: center">
+            {{ impiegato.t_codiceFiscale }}
+          </td>
+        </ng-container>
+
+        <!-- Professione -->
+        <ng-container matColumnDef="Professione">
+          <th mat-header-cell *matHeaderCellDef style="text-align: center">
+            Professione
+          </th>
+          <td mat-cell *matCellDef="let impiegato" style="text-align: center">
+            {{ impiegato.t_professione }}
+          </td>
+        </ng-container>
+
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumnsDimessi"
+          style="background-color: #d1e7dd"
+        ></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsDimessi"></tr>
+      </table>
+
+      <mat-paginator
+        [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions"
+        [showFirstLastButtons]="showFirstLastButtons"
+        [pageIndex]="pageIndex"
+        aria-label="Select page"
+      >
+      </mat-paginator>
+      <!-- <app-impiegati-dimessi
+        (dimessi$)="impDimessi($event)"
+      ></app-impiegati-dimessi> -->
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <div *ngIf="checked">
+      <div *ngIf="admin">
+        <button
+          mat-raised-button
+          style="background-color: #d1e7dd; margin-top: 30px"
+          (click)="add()"
+        >
+          Aggiungi Impiegato
+        </button>
+      </div>
+    </div>
+  </mat-card-actions>
+</mat-card>
+
+<!-- <div class="container">
   <h2 style="text-align: center">
     Impiegati
     <a
@@ -14,7 +384,21 @@
   </h2>
   <hr />
 
-  <table class="table table-secondary table-hover">
+  <div class="mat-elevation-z8">
+
+
+    <mat-paginator
+      [length]="length"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOptions"
+      [showFirstLastButtons]="showFirstLastButtons"
+      [pageIndex]="pageIndex"
+      aria-label="Select page"
+    >
+    </mat-paginator>
+  </div> -->
+
+<!-- <table class="table table-secondary table-hover">
     <thead>
       <tr class="table-success">
         <th style="text-align: center">Nome e Cognome</th>
@@ -30,7 +414,9 @@
         <td style="text-align: center">
           {{ impiegato.t_nome }} {{ impiegato.t_cognome }}
         </td>
-        <td style="text-align: center">{{ impiegato.d_dataNascita }}</td>
+        <td style="text-align: center">
+          {{ impiegato.d_dataNascita | date : "dd/MM/yyyy" }}
+        </td>
         <td style="text-align: center">{{ impiegato.t_codiceFiscale }}</td>
         <td style="text-align: center">
           {{ impiegato.t_professione }}
@@ -50,14 +436,14 @@
         </td>
       </tr>
     </tbody>
-  </table>
-  <div class="container" *ngIf="admin">
+  </table> -->
+<!-- <div *ngIf="admin">
     <button
-      class="btn btn-success btn-lg"
+      mat-raised-button
+      style="background-color: #d1e7dd; margin-top: 30px"
       (click)="add()"
-      style="padding-bottom: 20px"
     >
       Aggiungi Impiegato
     </button>
   </div>
-</div>
+</div> -->

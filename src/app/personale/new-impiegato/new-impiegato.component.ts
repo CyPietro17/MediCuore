@@ -1,10 +1,11 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ImpiegatoRequest } from 'src/types/Impiegato';
 import { Reparto } from 'src/types/Reparto';
 import { WebService } from '../../services/web.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-new-impiegato',
@@ -12,7 +13,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./new-impiegato.component.css'],
 })
 export class NewImpiegatoComponent implements OnInit {
-  constructor(private webService: WebService, private route: Router) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: ImpiegatoRequest,
+    private dialogRef: MatDialogRef<NewImpiegatoComponent>,
+    private webService: WebService,
+    private route: Router
+  ) {}
 
   reparti$: Observable<Reparto[]> = this.webService.getReparti();
 
@@ -25,7 +31,15 @@ export class NewImpiegatoComponent implements OnInit {
     }
   }
 
-  newImpiegato = new FormGroup({
+  onClick() {
+    this.webService.nuovoImpiegato(this.data).subscribe({
+      next: () => {
+        this.dialogRef.close(this.data);
+      },
+    });
+  }
+
+  /* newImpiegato = new FormGroup({
     t_nome: new FormControl('', Validators.required),
     t_cognome: new FormControl('', Validators.required),
     d_dataNascita: new FormControl(new Date(), Validators.required),
@@ -73,5 +87,5 @@ export class NewImpiegatoComponent implements OnInit {
 
   get n_reparto() {
     return this.newImpiegato.get('n_reparto')!.value;
-  }
+  } */
 }

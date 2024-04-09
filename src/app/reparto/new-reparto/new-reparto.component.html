@@ -1,37 +1,35 @@
-<div class="d-flex justify-content-center">
-  <form class="row g-3" [formGroup]="newReparto" (ngSubmit)="onSubmit()">
-    <div class="form-floating mb-4, col-auto">
-      <input
-        type="text"
-        formControlName="t_nome"
-        class="form-control"
-        id="floatingInput"
-        placeholder="Nome Reparto"
-        value=""
-        required
-      />
-      <label for="floatingInput">Nome Reparto</label>
-    </div>
-    <div class="form-floating mb-4, col-auto">
-      <input
-        type="number"
-        formControlName="n_postiLettoEffettivi"
-        class="form-control"
-        id="floatingInput"
-        placeholder="Posti Letto"
-        value="1"
-        min="1"
-      />
-      <label for="floatingInput">Posti Letto</label>
-    </div>
-    <div class="col-auto">
-      <button
-        style="--bs-btn-line-height: 2"
-        type="submit"
-        class="btn btn-success btn-lg"
-      >
-        Conferma
-      </button>
-    </div>
-  </form>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Nome Reparto</mat-label>
+    <input
+      matInput
+      type="text"
+      [(ngModel)]="data.t_nome"
+      id="floatingInput"
+      required
+    />
+  </mat-form-field>
+</div>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Posti Letto</mat-label>
+    <input
+      matInput
+      type="number"
+      [(ngModel)]="data.n_postiLettoEffettivi"
+      id="floatingInput"
+      value="1"
+      min="1"
+      required
+    />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button
+    mat-raised-button
+    style="background-color: #d1e7dd; height: 58px; width: 100%"
+    (click)="onClick()"
+  >
+    Conferma
+  </button>
 </div>

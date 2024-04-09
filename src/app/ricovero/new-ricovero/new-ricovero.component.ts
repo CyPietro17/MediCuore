@@ -1,11 +1,12 @@
+import { InizioRicoveroRequest } from './../../../types/Ricovero';
 import { WebService } from '../../services/web.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Paziente } from 'src/types/Paziente';
 import { Reparto } from 'src/types/Reparto';
-import { InizioRicoveroRequest } from 'src/types/Ricovero';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-new-ricovero',
@@ -13,7 +14,12 @@ import { InizioRicoveroRequest } from 'src/types/Ricovero';
   styleUrls: ['./new-ricovero.component.css'],
 })
 export class NewRicoveroComponent implements OnInit {
-  constructor(private webService: WebService, private route: Router) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: InizioRicoveroRequest,
+    private dialogSheet: MatDialogRef<NewRicoveroComponent>,
+    private webService: WebService,
+    private route: Router
+  ) {}
 
   ngOnInit(): void {
     if (
@@ -29,6 +35,14 @@ export class NewRicoveroComponent implements OnInit {
   pazienti$: Observable<Paziente[]> =
     this.webService.getPazientiNonRicoverati();
 
+  onClick() {
+    this.webService.nuovoRicovero(this.data).subscribe({
+      next: () => {
+        this.dialogSheet.close(this.data);
+      },
+    });
+  }
+  /*
   onSubmit() {
     console.log(this.prepareRequest());
     this.webService.nuovoRicovero(this.prepareRequest()).subscribe({
@@ -67,5 +81,5 @@ export class NewRicoveroComponent implements OnInit {
 
   get n_reparto() {
     return this.newRicovero.get('n_reparto')!.value;
-  }
+  } */
 }

@@ -1,4 +1,51 @@
-<div class="d-flex justify-content-center">
+<!-- Nome -->
+<div mat-dialog-content class="form-floating mb-3, col-auto">
+  <mat-form-field>
+    <mat-label>Nome</mat-label>
+    <input
+      matInput
+      type="text"
+      [(ngModel)]="data.t_nome"
+      id="floatingInput"
+      required
+    />
+  </mat-form-field>
+
+  <!-- Cognome -->
+  <mat-form-field>
+    <mat-label>Cognome</mat-label>
+    <input
+      matInput
+      type="text"
+      [(ngModel)]="data.t_cognome"
+      id="floatingInput"
+      required
+    />
+  </mat-form-field>
+
+  <!-- Data di Nascita -->
+  <mat-form-field>
+    <mat-label>Data di Nascita</mat-label>
+    <input
+      matInput
+      type="date"
+      [(ngModel)]="data.d_dataNascita"
+      id="floatingInput"
+      required
+    />
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+  <button
+    mat-raised-button
+    style="background-color: #d1e7dd; height: 58px; width: 100%"
+    (click)="onClick()"
+  >
+    Conferma
+  </button>
+
+  <!-- <div class="d-flex justify-content-center">
   <form class="row g-3" [formGroup]="newPaziente" (ngSubmit)="onSubmit()">
     <div class="form-floating mb-4, col-auto">
       <input
@@ -46,4 +93,5 @@
       </button>
     </div>
   </form>
+</div> -->
 </div>

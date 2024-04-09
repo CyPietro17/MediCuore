@@ -14,14 +14,11 @@ export class AuthService {
 
   authenticationService(username: string, password: string) {
     return this.http
-      .get(
-        `https://meduicuore-api-git-pietro-salvatore95-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/medicuore/auth`,
-        {
-          headers: {
-            authorization: this.createBasicAuthToken(username, password),
-          },
-        }
-      )
+      .get(`http://localhost:5003/medicuore/auth`, {
+        headers: {
+          authorization: this.createBasicAuthToken(username, password),
+        },
+      })
       .pipe(
         map((res) => {
           this.username = username;

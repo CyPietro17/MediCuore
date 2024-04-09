@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import { WebService } from 'src/app/services/web.service';
+import { Component, EventEmitter, Output, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { PazienteRequest } from 'src/types/Paziente';
 
@@ -9,7 +11,12 @@ import { PazienteRequest } from 'src/types/Paziente';
   styleUrls: ['./new-paziente.component.css'],
 })
 export class NewPazienteComponent implements OnInit {
-  constructor(private route: Router) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: PazienteRequest,
+    private dialogRef: MatDialogRef<NewPazienteComponent>,
+    private route: Router,
+    private webService: WebService
+  ) {}
 
   @Output() paziente = new EventEmitter<PazienteRequest>();
 
@@ -23,7 +30,15 @@ export class NewPazienteComponent implements OnInit {
     }
   }
 
-  newPaziente = new FormGroup({
+  onClick() {
+    this.webService.nuovoPaziente(this.data).subscribe({
+      next: () => {
+        this.dialogRef.close(this.data);
+      },
+    });
+  }
+
+  /* newPaziente = new FormGroup({
     t_nome: new FormControl('', Validators.required),
     t_cognome: new FormControl('', Validators.required),
     d_dataNascita: new FormControl(new Date(), Validators.required),
@@ -53,5 +68,5 @@ export class NewPazienteComponent implements OnInit {
 
   get d_dataNascita() {
     return this.newPaziente.get('d_dataNascita')!.value;
-  }
+  } */
 }

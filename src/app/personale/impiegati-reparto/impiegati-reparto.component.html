@@ -16,7 +16,9 @@
         <td style="text-align: center">
           {{ impiegato.t_nome }} {{ impiegato.t_cognome }}
         </td>
-        <td style="text-align: center">{{ impiegato.d_dataNascita }}</td>
+        <td style="text-align: center">
+          {{ impiegato.d_dataNascita | date : "dd/MM/yyyy" }}
+        </td>
         <td style="text-align: center">{{ impiegato.t_codiceFiscale }}</td>
         <td style="text-align: center">
           {{ impiegato.t_professione }}

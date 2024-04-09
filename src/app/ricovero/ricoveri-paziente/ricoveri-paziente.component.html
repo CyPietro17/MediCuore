@@ -14,9 +14,11 @@
     </thead>
     <tbody>
       <tr *ngFor="let ricovero of ricoveri$ | async">
-        <td style="text-align: center">{{ ricovero.d_inizioRicovero }}</td>
+        <td style="text-align: center">
+          {{ ricovero.d_inizioRicovero | date : "dd/MM/yyyy" }}
+        </td>
         <td style="text-align: center" *ngIf="ricovero.d_fineRicovero != null">
-          {{ ricovero.d_fineRicovero }}
+          {{ ricovero.d_fineRicovero | date : "dd/MM/yyyy" }}
         </td>
         <td style="text-align: center" *ngIf="ricovero.d_fineRicovero == null">
           Ricovero aperto

@@ -17,7 +17,7 @@ import { User, UserRequest } from 'src/types/User';
 export class WebService {
   constructor(private httpClient: HttpClient) {}
 
-  private readonly apiUrl: string = `https://meduicuore-api-git-pietro-salvatore95-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/medicuore`;
+  private readonly apiUrl: string = `http://localhost:5003/medicuore`;
   //medicuore.eu-north-1.elasticbeanstalk.com
 
   getReparti(): Observable<Reparto[]> {
@@ -117,6 +117,20 @@ export class WebService {
   nuovoImpiegato(impiegato: ImpiegatoRequest): Observable<Impiegato> {
     return this.httpClient.put<Impiegato>(
       `${this.apiUrl}/impiegati/aggiungi`,
+      impiegato
+    );
+  }
+
+  filterImpiegatiAssunti(impiegato: ImpiegatoRequest): Observable<Impiegato[]> {
+    return this.httpClient.post<Impiegato[]>(
+      `${this.apiUrl}/impiegati/filter/assunti`,
+      impiegato
+    );
+  }
+
+  filterImpiegatiDimessi(impiegato: ImpiegatoRequest): Observable<Impiegato[]> {
+    return this.httpClient.post<Impiegato[]>(
+      `${this.apiUrl}/impiegati/filter/dimessi`,
       impiegato
     );
   }

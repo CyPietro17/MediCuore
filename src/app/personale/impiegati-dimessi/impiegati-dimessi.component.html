@@ -1,35 +1,58 @@
-<div class="container">
-  <h2 style="text-align: center">
-    <a routerLink="/impiegati" style="text-decoration: none"
-      ><span
-        class="pi pi-chevron-circle-left"
-        style="padding-right: 10px"
-      ></span
-    ></a>
-    Impiegati dimessi
-  </h2>
-  <hr />
+<table mat-table [dataSource]="dataSource">
+  <!-- Nome e Cognome -->
+  <ng-container matColumnDef="Nome e Cognome">
+    <th mat-header-cell *matHeaderCellDef style="text-align: center">
+      Nome e Cognome
+    </th>
+    <td mat-cell *matCellDef="let impiegato" style="text-align: center">
+      {{ impiegato.t_nome }} {{ impiegato.t_cognome }}
+    </td>
+  </ng-container>
 
-  <table class="table table-secondary table-hover">
-    <thead>
-      <tr class="table-success">
-        <th style="text-align: center; width: 25%">Nome e Cognome</th>
-        <th style="text-align: center; width: 25%">Data di Nascita</th>
-        <th style="text-align: center; width: 25%">Codice Fiscale</th>
-        <th style="text-align: center; width: 25%">Professione</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let impiegato of dimessi$ | async">
-        <td style="text-align: center">
-          {{ impiegato.t_nome }} {{ impiegato.t_cognome }}
-        </td>
-        <td style="text-align: center">{{ impiegato.d_dataNascita }}</td>
-        <td style="text-align: center">{{ impiegato.t_codiceFiscale }}</td>
-        <td style="text-align: center">
-          {{ impiegato.t_professione }}
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <!-- Data di Nascita -->
+  <ng-container matColumnDef="Data di Nascita">
+    <th mat-header-cell *matHeaderCellDef style="text-align: center">
+      Data di Nascita
+    </th>
+    <td mat-cell *matCellDef="let impiegato" style="text-align: center">
+      {{ impiegato.d_dataNascita | date : "dd/MM/yyyy" }}
+    </td>
+  </ng-container>
+
+  <!-- Codice Fiscale -->
+  <ng-container matColumnDef="Codice Fiscale">
+    <th mat-header-cell *matHeaderCellDef style="text-align: center">
+      Codice Fiscale
+    </th>
+    <td mat-cell *matCellDef="let impiegato" style="text-align: center">
+      {{ impiegato.t_codiceFiscale }}
+    </td>
+  </ng-container>
+
+  <!-- Professione -->
+  <ng-container matColumnDef="Professione">
+    <th mat-header-cell *matHeaderCellDef style="text-align: center">
+      Professione
+    </th>
+    <td mat-cell *matCellDef="let impiegato" style="text-align: center">
+      {{ impiegato.t_professione }}
+    </td>
+  </ng-container>
+
+  <tr
+    mat-header-row
+    *matHeaderRowDef="displayedColumnsDimessi"
+    style="background-color: #d1e7dd"
+  ></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumnsDimessi"></tr>
+</table>
+
+<mat-paginator
+  [length]="length"
+  [pageSize]="pageSize"
+  [pageSizeOptions]="pageSizeOptions"
+  [showFirstLastButtons]="showFirstLastButtons"
+  [pageIndex]="pageIndex"
+  aria-label="Select page"
+>
+</mat-paginator>

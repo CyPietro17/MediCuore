@@ -1,7 +1,9 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { RepartoRequest } from 'src/types/Reparto';
+import { HttpClient } from '@angular/common/http';
+import { WebService } from 'src/app/services/web.service';
 
 @Component({
   selector: 'app-new-reparto',
@@ -9,7 +11,12 @@ import { RepartoRequest } from 'src/types/Reparto';
   styleUrls: ['./new-reparto.component.css'],
 })
 export class NewRepartoComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: RepartoRequest,
+    private router: Router,
+    private bottomSheet: MatDialogRef<NewRepartoComponent>,
+    private webService: WebService
+  ) {}
 
   ngOnInit(): void {
     if (sessionStorage.getItem('authenticatedUser') == null) {
@@ -19,19 +26,27 @@ export class NewRepartoComponent implements OnInit {
     }
   }
 
-  @Output() reparto = new EventEmitter<RepartoRequest>();
+  onClick() {
+    this.webService.nuovoReparto(this.data).subscribe({
+      next: () => {
+        this.bottomSheet.close(this.data);
+      },
+    });
+  }
+
+  /* @Output() reparto = new EventEmitter<RepartoRequest>();
 
   newReparto = new FormGroup({
     t_nome: new FormControl('', Validators.required),
     n_postiLettoEffettivi: new FormControl(1, Validators.required),
-  });
+  }); */
 
-  onSubmit() {
-    this.reparto.emit(this.prepareRequest());
-    this.newReparto.reset();
-  }
+  /* onSubmit(event: MouseEvent) {
+    this.bottomSheet.close(this.data);
+    event.preventDefault();
+  } */
 
-  prepareRequest(): RepartoRequest {
+  /* prepareRequest(): RepartoRequest {
     return {
       t_nome: this.t_nome,
       n_postiLettoEffettivi: this.n_postiLettoEffettivi,
@@ -44,5 +59,5 @@ export class NewRepartoComponent implements OnInit {
 
   get n_postiLettoEffettivi() {
     return this.newReparto.get('n_postiLettoEffettivi')?.value;
-  }
+  } */
 }

@@ -23,6 +23,19 @@ import { RicoveroChiudiComponent } from './ricovero/ricovero-chiudi/ricovero-chi
 import { ImpiegatiRepartoComponent } from './personale/impiegati-reparto/impiegati-reparto.component';
 import { RicoveriComponent } from './ricovero/ricoveri/ricoveri.component';
 import { ImpiegatiDimessiComponent } from './personale/impiegati-dimessi/impiegati-dimessi.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { RicercaImpiegatiDimessiComponent } from './personale/ricerca/dimessi/ricerca-impiegati-dimessi/ricerca-impiegati-dimessi.component';
+import { RicercaImpiegatiAssuntiComponent } from './personale/ricerca/assunti/ricerca-impiegati-assunti/ricerca-impiegati-assunti.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +56,8 @@ import { ImpiegatiDimessiComponent } from './personale/impiegati-dimessi/impiega
     RicoveriPazienteComponent,
     RicoveroChiudiComponent,
     ImpiegatiDimessiComponent,
+    RicercaImpiegatiDimessiComponent,
+    RicercaImpiegatiAssuntiComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +66,18 @@ import { ImpiegatiDimessiComponent } from './personale/impiegati-dimessi/impiega
     ReactiveFormsModule,
     CoreModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatButtonModule,
+    MatInputModule,
+    MatBottomSheetModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatBottomSheetModule,
+    MatSlideToggleModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptService, multi: true },

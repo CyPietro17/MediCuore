@@ -4,6 +4,7 @@ import { Ricovero } from 'src/types/Ricovero';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Reparto } from 'src/types/Reparto';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-ricoveri',

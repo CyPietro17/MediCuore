@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { ErrorComponent } from './error/error.component';
 import { RepartiComponent } from './reparto/reparti/reparti.component';
 import { RicoveriComponent } from './ricovero/ricoveri/ricoveri.component';
-import { PazientiComponent } from './paziente/pazienti/pazienti.component';
 import { ImpiegatiComponent } from './personale/impiegati/impiegati.component';
 import { RegisterComponent } from './register/register.component';
 import { NewRicoveroComponent } from './ricovero/new-ricovero/new-ricovero.component';
@@ -14,6 +11,7 @@ import { RicoveriPazienteComponent } from './ricovero/ricoveri-paziente/ricoveri
 import { RicoveroChiudiComponent } from './ricovero/ricovero-chiudi/ricovero-chiudi.component';
 import { ImpiegatiRepartoComponent } from './personale/impiegati-reparto/impiegati-reparto.component';
 import { ImpiegatiDimessiComponent } from './personale/impiegati-dimessi/impiegati-dimessi.component';
+import { LoginComponent, ErrorComponent } from './core';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -28,7 +26,13 @@ const routes: Routes = [
   { path: 'impiegati/dimessi', component: ImpiegatiDimessiComponent },
   { path: 'impiegati/nuovo', component: NewImpiegatoComponent },
   { path: 'impiegati/:id', component: ImpiegatiRepartoComponent },
-  { path: 'pazienti', component: PazientiComponent },
+  {
+    path: 'pazienti',
+    loadChildren: () =>
+      import('./modules/paziente/paziente.module').then(
+        (m) => m.PazienteModule
+      ),
+  },
   { path: 'ricoveri/:id', component: RicoveriComponent },
   { path: '**', component: ErrorComponent },
 ];

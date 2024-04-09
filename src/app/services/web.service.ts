@@ -10,7 +10,6 @@ import { Reparto, RepartoRequest } from 'src/types/Reparto';
 import { Paziente, PazienteRequest } from 'src/types/Paziente';
 import { Impiegato, ImpiegatoRequest } from 'src/types/Impiegato';
 import { User, UserRequest } from 'src/types/User';
-
 @Injectable({
   providedIn: 'root',
 })

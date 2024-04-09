@@ -1,9 +1,9 @@
-import { WebService } from './../services/web.service';
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserRequest } from 'src/types/User';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import { WebService } from 'src/app/services/web.service';
 
 @Component({
   selector: 'app-login',

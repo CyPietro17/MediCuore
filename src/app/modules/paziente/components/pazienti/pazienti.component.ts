@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { WebService } from '../../services/web.service';
+import { WebService } from 'src/app/services/web.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Paziente, PazienteRequest } from 'src/types/Paziente';
 import { Observable } from 'rxjs';

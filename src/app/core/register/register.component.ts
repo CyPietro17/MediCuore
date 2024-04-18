@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { WebService } from '../services/web.service';
+import { WebService } from '../../services/web.service';
 import { UserRequest } from 'src/types/User';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { sha512 } from 'js-sha512';
 
 @Component({
   selector: 'app-register',
@@ -12,13 +13,17 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
   constructor(private webService: WebService, private route: Router) {}
 
+  // private hash: Hasher = sha512_256.create();
+
   newUser = new FormGroup({
-    username: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
+    username: new FormControl(null, Validators.required),
+    email: new FormControl(null, Validators.required),
+    password: new FormControl(null, Validators.required),
   });
 
   onSubmit() {
+    console.log(this.preparedRequest().password);
+
     this.webService.nuovoUtente(this.preparedRequest()).subscribe({
       next: () => {
         this.route.navigate(['login']);
@@ -43,6 +48,6 @@ export class RegisterComponent {
   }
 
   get password() {
-    return this.newUser.get('password')?.value;
+    return sha512(this.newUser.get('password')?.value!);
   }
 }

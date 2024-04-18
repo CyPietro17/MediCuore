@@ -1,10 +1,17 @@
-.input-search {
+/* .input-search {
   width: 150px;
-}
+} */
 
-.example-container {
+/* .example-container {
   height: 400px;
   width: 550px;
   max-width: 100%;
   overflow: auto;
-}
+} */
+
+/* .filter-search {
+  display: flex;
+  position: absolute;
+  right: 10%;
+  top: 0;
+} */

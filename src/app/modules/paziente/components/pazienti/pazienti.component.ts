@@ -1,14 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { WebService } from 'src/app/services/web.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Paziente, PazienteRequest } from 'src/types/Paziente';
-import { Observable } from 'rxjs';
-import { Ricovero } from 'src/types/Ricovero';
+import { Paziente } from 'src/types/Paziente';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { NewPazienteComponent } from '../new-paziente/new-paziente.component';
-import { ImpiegatoRequest } from 'src/types/Impiegato';
+import { PatientService } from '../../services/patient.service';
 
 @Component({
   selector: 'app-pazienti',
@@ -17,7 +14,7 @@ import { ImpiegatoRequest } from 'src/types/Impiegato';
 })
 export class PazientiComponent implements OnInit {
   constructor(
-    private webService: WebService,
+    private webService: PatientService,
     private route: ActivatedRoute,
     private router: Router,
     private dialog: MatDialog

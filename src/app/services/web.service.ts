@@ -19,59 +19,6 @@ export class WebService {
   private readonly apiUrl: string = `http://localhost:5003/medicuore`;
   //medicuore.eu-north-1.elasticbeanstalk.com
 
-  getReparti(): Observable<Reparto[]> {
-    return this.httpClient.get<Reparto[]>(`${this.apiUrl}/reparti`);
-  }
-
-  getReparto(id: number): Observable<Reparto> {
-    return this.httpClient.get<Reparto>(
-      `${this.apiUrl}/reparti/cerca?id=` + id
-    );
-  }
-
-  nuovoReparto(reparto: RepartoRequest): Observable<Reparto> {
-    return this.httpClient.put<Reparto>(
-      `${this.apiUrl}/reparti/nuovo`,
-      reparto
-    );
-  }
-
-  cercaRicovero(id: number): Observable<Ricovero> {
-    return this.httpClient.get<Ricovero>(
-      `${this.apiUrl}/ricoveri/cerca?id=` + id
-    );
-  }
-
-  chiudiRicovero(ricovero: FineRicoveroRequest): Observable<Ricovero> {
-    return this.httpClient.post<Ricovero>(
-      `${this.apiUrl}/ricoveri/chiudi`,
-      ricovero
-    );
-  }
-
-  getRicoveriAttivi(): Observable<Ricovero[]> {
-    return this.httpClient.get<Ricovero[]>(`${this.apiUrl}/ricoveri/attivi`);
-  }
-
-  getRicoveriReparto(id: number): Observable<Ricovero[]> {
-    return this.httpClient.get<Ricovero[]>(
-      `${this.apiUrl}/ricoveri/attivi/reparto/` + id
-    );
-  }
-
-  nuovoRicovero(ricoveri: InizioRicoveroRequest): Observable<Ricovero> {
-    return this.httpClient.put<Ricovero>(
-      `${this.apiUrl}/ricoveri/nuovo`,
-      ricoveri
-    );
-  }
-
-  getRicoveriPaziente(id: number): Observable<Ricovero[]> {
-    return this.httpClient.get<Ricovero[]>(
-      `${this.apiUrl}/ricoveri/paziente?id_p=` + id
-    );
-  }
-
   getImpiegatiReparto(id: number): Observable<Impiegato[]> {
     return this.httpClient.get<Impiegato[]>(
       `${this.apiUrl}/impiegati/reparto/` + id

@@ -13,13 +13,14 @@
     <tbody>
       <tr *ngFor="let ricovero of ricoveri$ | async">
         <td style="text-align: center">
-          {{ ricovero.d_inizioRicovero | date : "dd/MM/yyyy" }}
+          {{ ricovero?.d_inizioRicovero | date : "dd/MM/yyyy" }}
         </td>
         <td style="text-align: center">
-          {{ ricovero.n_paziente.t_nome }} {{ ricovero.n_paziente.t_cognome }}
+          {{ ricovero?.n_paziente?.t_nome }}
+          {{ ricovero?.n_paziente?.t_cognome }}
         </td>
         <td style="text-align: center">
-          {{ ricovero.n_paziente.t_codiceFiscale }}
+          {{ ricovero?.n_paziente?.t_codiceFiscale }}
         </td>
         <td style="text-align: center">
           <a

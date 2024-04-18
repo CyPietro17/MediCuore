@@ -4,6 +4,7 @@ import { UserRequest } from 'src/types/User';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { WebService } from 'src/app/services/web.service';
+import { sha512 } from 'js-sha512';
 
 @Component({
   selector: 'app-login',
@@ -30,8 +31,8 @@ export class LoginComponent implements OnInit {
   }
 
   controllUser = new FormGroup({
-    username: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
+    username: new FormControl(null, Validators.required),
+    password: new FormControl(null, Validators.required),
   });
 
   preparedRequest(): UserRequest {
@@ -47,7 +48,7 @@ export class LoginComponent implements OnInit {
   }
 
   get password() {
-    return this.controllUser.get('password')?.value;
+    return sha512(this.controllUser.get('password')?.value!);
   }
 
   gestAuth(): void {

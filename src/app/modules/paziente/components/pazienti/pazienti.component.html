@@ -3,49 +3,46 @@
     <mat-card-title style="display: flex; justify-content: center">
       <h1>PAZIENTI</h1>
 
-      <table
-        class="example-full-width"
-        cellspacing="0"
-        *ngIf="filter"
-        style="display: flex; position: absolute; right: 10%; top: 0"
-      >
-        <tr>
-          <td>
-            <mat-form-field class="input_search">
-              <mat-label>Nome</mat-label>
-              <input matInput type="text" />
-            </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field class="input_search">
-              <mat-label>Cognome</mat-label>
-              <input matInput type="text" />
-            </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field class="input_search">
-              <mat-label>Data di Nascita</mat-label>
-              <input matInput type="date" />
-            </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field class="input_search">
-              <mat-label>Codice Fiscale</mat-label>
-              <input matInput type="text" />
-            </mat-form-field>
-          </td>
-        </tr>
-      </table>
+      <div>
+        <table class="filter-search" cellspacing="0" *ngIf="filter">
+          <tr>
+            <td>
+              <mat-form-field class="input-search">
+                <mat-label>Nome</mat-label>
+                <input matInput type="text" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="input-search">
+                <mat-label>Cognome</mat-label>
+                <input matInput type="text" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="input-search">
+                <mat-label>Data di Nascita</mat-label>
+                <input matInput type="date" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="input-search">
+                <mat-label>Codice Fiscale</mat-label>
+                <input matInput type="text" />
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
 
-      <button
-        style="right: 2.5%; position: absolute"
-        mat-button
-        class="example-icon favorite-icon"
-        aria-label="Example icon-button with heart icon"
-        (click)="search()"
-      >
-        SEARCH
-      </button>
+        <button
+          style="right: 2.5%; position: absolute"
+          mat-button
+          class="example-icon favorite-icon"
+          aria-label="Example icon-button with heart icon"
+          (click)="search()"
+        >
+          SEARCH
+        </button>
+      </div>
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>

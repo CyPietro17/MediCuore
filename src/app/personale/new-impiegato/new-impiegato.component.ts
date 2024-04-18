@@ -6,6 +6,7 @@ import { WebService } from '../../services/web.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { DepartmentService } from 'src/app/modules/department/services/department.service';
 
 @Component({
   selector: 'app-new-impiegato',
@@ -16,11 +17,12 @@ export class NewImpiegatoComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: ImpiegatoRequest,
     private dialogRef: MatDialogRef<NewImpiegatoComponent>,
+    private departmentService: DepartmentService,
     private webService: WebService,
     private route: Router
   ) {}
 
-  reparti$: Observable<Reparto[]> = this.webService.getReparti();
+  reparti$: Observable<Reparto[]> = this.departmentService.getReparti();
 
   ngOnInit(): void {
     if (

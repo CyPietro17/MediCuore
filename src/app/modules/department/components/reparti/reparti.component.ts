@@ -1,13 +1,12 @@
-import { Reparto, RepartoRequest } from './../../../types/Reparto';
+import { Reparto, RepartoRequest } from '../../../../../types/Reparto';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { WebService } from '../../services/web.service';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { AuthService } from '../../../../services/auth.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { NewRepartoComponent } from '../new-reparto/new-reparto.component';
 import { MatDialog } from '@angular/material/dialog';
+import { DepartmentService } from '../../services/department.service';
 
 @Component({
   selector: 'app-reparti',
@@ -16,7 +15,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class RepartiComponent implements OnInit, AfterViewInit {
   constructor(
-    private webService: WebService,
+    private webService: DepartmentService,
     private route: Router,
     private authService: AuthService,
     private dialog: MatDialog
@@ -35,10 +34,10 @@ export class RepartiComponent implements OnInit, AfterViewInit {
     'Disponibilità',
     'Azioni',
   ];
+
   dataSource: MatTableDataSource<Reparto> = new MatTableDataSource<Reparto>([]);
   admin: boolean = false;
   aggiungi: boolean = false;
-  adminRole: boolean = false;
   isLoggedIn = false;
   length!: number;
   pageSize = 5;
@@ -94,7 +93,7 @@ export class RepartiComponent implements OnInit, AfterViewInit {
   }
 
   getRole(): boolean {
-    if (sessionStorage.getItem('authenticatedUser') === 'admin01') {
+    if (sessionStorage.getItem('role') === 'ADMIN') {
       return (this.admin = true);
     }
     return (this.admin = false);

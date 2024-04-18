@@ -1,9 +1,8 @@
+import { DepartmentService } from './../../services/department.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RepartoRequest } from 'src/types/Reparto';
-import { HttpClient } from '@angular/common/http';
-import { WebService } from 'src/app/services/web.service';
 
 @Component({
   selector: 'app-new-reparto',
@@ -15,7 +14,7 @@ export class NewRepartoComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: RepartoRequest,
     private router: Router,
     private bottomSheet: MatDialogRef<NewRepartoComponent>,
-    private webService: WebService
+    private webService: DepartmentService
   ) {}
 
   ngOnInit(): void {

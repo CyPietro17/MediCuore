@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { WebService } from '../../services/web.service';
 import { Ricovero } from 'src/types/Ricovero';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Reparto } from 'src/types/Reparto';
-import { MatDialog } from '@angular/material/dialog';
+import { DepartmentService } from 'src/app/modules/department/services/department.service';
+import { HospitalizationService } from '../../services/hospitalization.service';
 
 @Component({
-  selector: 'app-ricoveri',
-  templateUrl: './ricoveri.component.html',
-  styleUrls: ['./ricoveri.component.css'],
+  selector: 'app-hospitalization',
+  templateUrl: './hospitalization.component.html',
+  styleUrls: ['./hospitalization.component.css'],
 })
-export class RicoveriComponent implements OnInit {
+export class HospitalizationComponent implements OnInit {
   constructor(
-    private webService: WebService,
+    private departmentService: DepartmentService,
+    private hospitalizationService: HospitalizationService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -32,8 +33,8 @@ export class RicoveriComponent implements OnInit {
     ) {
       this.router.navigateByUrl('');
     }
-    this.ricoveri$ = this.webService.getRicoveriReparto(this.id);
-    this.webService.getReparto(this.id).subscribe({
+    this.ricoveri$ = this.hospitalizationService.getRicoveriReparto(this.id);
+    this.departmentService.getReparto(this.id).subscribe({
       next: (res) => {
         this.reparto$ = res;
       },

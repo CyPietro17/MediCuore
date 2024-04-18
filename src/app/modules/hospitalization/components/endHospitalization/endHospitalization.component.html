@@ -1,0 +1,92 @@
+<div
+  mat-dialog-content
+  class="form-floating mb-3, col-auto"
+  [formGroup]="closeForm"
+>
+  <!-- DATA INIZIO RICOVERO -->
+  <mat-form-field>
+    <mat-label>Inizio ricovero</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker1"
+      id="floatingInput"
+      formControlName="d_inizioRicovero"
+      required
+      [value]="data.d_inizioRicovero"
+    />
+    <mat-datepicker-toggle
+      matIconSuffix
+      [for]="picker1"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+  </mat-form-field>
+
+  <!-- DATA FINE RICOVERO -->
+  <mat-form-field>
+    <mat-label>Fine ricovero</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker2"
+      id="floatingInput"
+      formControlName="d_fineRicovero"
+      required
+    />
+    <mat-datepicker-toggle
+      matIconSuffix
+      [for]="picker2"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+
+  <!-- REPARTO -->
+  <mat-form-field>
+    <mat-label>Reparto</mat-label>
+    <mat-select
+      matInput
+      id="floatingSelect"
+      formControlName="n_reparto"
+      required
+    >
+      <mat-option [value]="data.t_reparto.n_id">{{
+        data.t_reparto.t_nome
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- PAZIENTE -->
+  <mat-form-field>
+    <mat-label>Paziente</mat-label>
+    <input
+      matInput
+      type="text"
+      id="floatingInput"
+      formControlName="n_paziente"
+      required
+    />
+    <!-- {{ data.n_paziente.t_nome }}
+    {{ data.n_paziente.t_cognome }} -->
+  </mat-form-field>
+
+  <!-- CODICE FISCALE -->
+  <mat-form-field>
+    <mat-label>Codice Fiscale</mat-label>
+    <input
+      matInput
+      type="text"
+      id="floatingInput"
+      formControlName="t_codiceFiscale"
+      required
+      [value]="data.n_paziente.t_codiceFiscale"
+    />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button
+    type="submit"
+    mat-raised-button
+    style="background-color: #d1e7dd; height: 58px; width: 100%"
+    (click)="onClick()"
+  >
+    Conferma
+  </button>
+</div>

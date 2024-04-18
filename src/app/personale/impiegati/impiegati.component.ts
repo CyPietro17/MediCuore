@@ -7,7 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { NewImpiegatoComponent } from '../new-impiegato/new-impiegato.component';
-import { debounce, debounceTime, distinctUntilChanged } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-impiegati',
@@ -20,6 +20,7 @@ export class ImpiegatiComponent implements OnInit {
     private route: Router,
     private dialog: MatDialog
   ) {}
+
   form: FormGroup = new FormGroup({
     checked: new FormControl(false),
     t_nome: new FormControl(null),
@@ -32,9 +33,7 @@ export class ImpiegatiComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-  }
+  ngAfterViewInit(): void {}
 
   displayedColumnsAdmin: string[] = [
     'Nome e Cognome',
@@ -101,6 +100,7 @@ export class ImpiegatiComponent implements OnInit {
         this.getRole();
         this.length = res.length;
         this.dataSource.data = res;
+        this.dataSource.paginator = this.paginator;
       },
     });
 

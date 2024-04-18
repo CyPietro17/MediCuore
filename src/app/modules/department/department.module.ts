@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PazientiComponent, NewPazienteComponent } from './components';
 import { MaterialModule } from 'src/app/core/modules';
 import { CoreModule } from 'src/app/core/core.module';
-import { PazienteRoutes } from './paziente.routes';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NewRepartoComponent, RepartiComponent } from './components';
+import { DepartmentRoutes } from './department.routes';
 
 @NgModule({
-  declarations: [PazientiComponent, NewPazienteComponent],
+  declarations: [NewRepartoComponent, RepartiComponent],
   imports: [
     CommonModule,
     MaterialModule,
     CoreModule,
-    PazienteRoutes,
+    DepartmentRoutes,
     FormsModule,
     ReactiveFormsModule,
   ],
-  exports: [PazientiComponent, NewPazienteComponent],
+  exports: [RepartiComponent, NewRepartoComponent],
 })
-export class PazienteModule {}
+export class DepartmentModule {}

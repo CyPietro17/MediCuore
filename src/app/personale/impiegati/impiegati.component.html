@@ -1,6 +1,9 @@
 <mat-card class="container" style="background-color: #f3f3f3">
   <mat-card-header [formGroup]="form">
-    <mat-card-title style="display: flex; justify-content: center">
+    <mat-card-title
+      class="title"
+      style="display: flex; justify-content: center"
+    >
       <h1>IMPIEGATI</h1>
       <mat-slide-toggle
         formControlName="checked"
@@ -11,12 +14,7 @@
       >
 
       <div>
-        <table
-          class="example-full-width"
-          cellspacing="0"
-          *ngIf="filter"
-          style="display: flex; position: absolute; right: 10%; top: 0"
-        >
+        <table class="filter-search" cellspacing="0" *ngIf="filter">
           <tr>
             <td>
               <mat-form-field class="input-search">

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { WebService } from '../../services/web.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Ricovero } from 'src/types/Ricovero';
 import { Paziente } from 'src/types/Paziente';
+import { HospitalizationService } from '../../services/hospitalization.service';
+import { PatientService } from 'src/app/modules/paziente/services/patient.service';
 
 @Component({
   selector: 'app-ricoveri-paziente',
@@ -12,7 +13,8 @@ import { Paziente } from 'src/types/Paziente';
 })
 export class RicoveriPazienteComponent implements OnInit {
   constructor(
-    private webService: WebService,
+    private hospitalizationService: HospitalizationService,
+    private patientService: PatientService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -30,8 +32,8 @@ export class RicoveriPazienteComponent implements OnInit {
     ) {
       this.router.navigateByUrl('');
     }
-    this.ricoveri$ = this.webService.getRicoveriPaziente(this.id);
-    this.webService.paziente(this.id).subscribe({
+    this.ricoveri$ = this.hospitalizationService.getRicoveriPaziente(this.id);
+    this.patientService.paziente(this.id).subscribe({
       next: (res) => {
         this.paziente$ = res;
       },

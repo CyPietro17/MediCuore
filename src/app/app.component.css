@@ -28,3 +28,10 @@ body {
   background-color: #f3f3f3;
   color: #444;
 }
+
+.filter.search {
+  display: flex;
+  position: absolute;
+  right: 10%;
+  top: 0;
+}

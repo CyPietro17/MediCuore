@@ -8,7 +8,6 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { WebService } from './web.service';
 
 @Injectable({
   providedIn: 'root',
@@ -27,11 +26,12 @@ export class InterceptService implements HttpInterceptor {
       this.authService.isUserLoggedIn() &&
       req.url.indexOf('basicauth') === -1
     ) {
+      const user = this.authService.getUser();
       const authReq = req.clone({
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
           Authorization: `Basic ${window.btoa(
-            this.authService.username + ':' + this.authService.password
+            user.username + ':' + user.password
           )}`,
         }),
       });

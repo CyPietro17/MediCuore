@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { WebService } from 'src/app/services/web.service';
 import { sha512 } from 'js-sha512';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-login',
@@ -14,12 +15,14 @@ import { sha512 } from 'js-sha512';
 export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
+    private toastsService: NgToastService,
     private route: Router,
     private webService: WebService
   ) {}
 
-  errorMessage = 'Invalid Credentials! username e/o password non valide';
-  successMessage!: string;
+  errorMessage: string = 'username and/or password wrong';
+  errorTitle: string = 'Invalid Credentials!';
+  successMessage: string = 'Login Success';
   invalidLogin = false;
   loginSuccess = false;
   authenticate: boolean = true;
@@ -61,21 +64,36 @@ export class LoginComponent implements OnInit {
             this.preparedRequest().username!,
             this.preparedRequest().password!
           )
-          .subscribe(
-            (result) => {
+          .subscribe({
+            next: () => {
               this.invalidLogin = false;
               this.loginSuccess = true;
-              this.successMessage = 'Login Successful.';
+              this.toastsService.success({
+                detail: this.successMessage.toUpperCase(),
+                summary: 'Welcome back to MediCuore "'.concat(
+                  res.username.toUpperCase().concat('"')
+                ),
+                duration: 5000,
+              });
               this.route.navigate(['/reparti']);
             },
-            () => {
+            error: () => {
               this.invalidLogin = true;
               this.loginSuccess = false;
-              alert(this.errorMessage);
-            }
-          );
+              this.toastsService.error({
+                detail: this.errorTitle.toUpperCase(),
+                summary: 'Anything was wrong! Try login again.',
+                duration: 5000,
+              });
+            },
+          });
       },
       error: (err) => {
+        this.toastsService.error({
+          detail: this.errorTitle.toUpperCase(),
+          summary: this.errorMessage,
+          duration: 5000,
+        });
         console.error(err);
       },
     });

@@ -1,22 +1,21 @@
-import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { WebService } from 'src/app/services/web.service';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ImpiegatoRequest } from 'src/types/Impiegato';
 import { Reparto } from 'src/types/Reparto';
-import { WebService } from '../../services/web.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DepartmentService } from 'src/app/modules/department/services/department.service';
 
 @Component({
-  selector: 'app-new-impiegato',
-  templateUrl: './new-impiegato.component.html',
-  styleUrls: ['./new-impiegato.component.css'],
+  selector: 'app-new-employees',
+  templateUrl: './new-employees.component.html',
+  styleUrls: ['./new-employees.component.css'],
 })
-export class NewImpiegatoComponent implements OnInit {
+export class NewEmployeesComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: ImpiegatoRequest,
-    private dialogRef: MatDialogRef<NewImpiegatoComponent>,
+    private dialogRef: MatDialogRef<NewEmployeesComponent>,
     private departmentService: DepartmentService,
     private webService: WebService,
     private route: Router

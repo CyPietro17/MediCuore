@@ -1,20 +1,20 @@
 import { FormGroup, FormControl } from '@angular/forms';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { WebService } from '../../services/web.service';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { WebService } from 'src/app/services/web.service';
 import { Impiegato, ImpiegatoRequest } from 'src/types/Impiegato';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { NewImpiegatoComponent } from '../new-impiegato/new-impiegato.component';
-import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { Observable, Subject, debounceTime, distinctUntilChanged } from 'rxjs';
+import { NewEmployeesComponent } from '../new-employees/new-employees.component';
 
 @Component({
-  selector: 'app-impiegati',
-  templateUrl: './impiegati.component.html',
-  styleUrls: ['./impiegati.component.css'],
+  selector: 'app-employees',
+  templateUrl: './employees.component.html',
+  styleUrls: ['./employees.component.css'],
 })
-export class ImpiegatiComponent implements OnInit {
+export class EmployeesComponent implements OnInit {
   constructor(
     private webService: WebService,
     private route: Router,
@@ -103,20 +103,29 @@ export class ImpiegatiComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
       },
     });
-
-    this.handleFormChange();
+    // handleFilter()
   }
 
-  handleFormChange() {
-    this.form.valueChanges
-      .pipe(debounceTime(300), distinctUntilChanged())
-      .subscribe((val) => {
-        if (!this.checked) {
-          this.filterImpDimessi(val);
-        } else {
-          this.filterImp(val);
-        }
-      });
+  // handleFilter(childResponse: Impiegato[]) {
+  // this.form.valueChanges
+  //   .pipe(debounceTime(300), distinctUntilChanged())
+  //   .subscribe((val) => {
+  //     if (!this.checked) {
+  //       this.filterImpDimessi(val);
+  //     } else {
+  //       this.filterImp(val);
+  //     }
+  //   });
+  // }
+
+  handleResponse(childResponse: Observable<Impiegato[]>) {
+    childResponse.subscribe({
+      next: (res) => {
+        this.length = res.length;
+        this.dataSource.data = res;
+        this.dataSource.paginator = this.paginator;
+      },
+    });
   }
 
   getRole(): boolean {
@@ -127,7 +136,7 @@ export class ImpiegatiComponent implements OnInit {
   }
 
   add(): void {
-    let sheet = this.dialog.open(NewImpiegatoComponent, {
+    let sheet = this.dialog.open(NewEmployeesComponent, {
       data: {
         impiegato: {
           t_nome: this.t_nome,
@@ -229,18 +238,4 @@ export class ImpiegatiComponent implements OnInit {
   set checked(checked: boolean) {
     this.form.get('checked')?.setValue(checked);
   }
-
-  /* filterImpDimessi(filterDimessi: Impiegato[]) {
-    setTimeout(() => {
-      this.length = filterDimessi.length;
-      this.dataSource.data = filterDimessi;
-    }, 1000);
-  } */
-
-  /* impDimessi(impiegatiDimessi: Impiegato[]) {
-    this.impDim = impiegatiDimessi;
-    this.length = impiegatiDimessi.length;
-    this.dataSource.data = impiegatiDimessi;
-    this.dataSource.paginator = this.paginator;
-  } */
 }

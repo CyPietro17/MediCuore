@@ -1,45 +1,45 @@
-<tr>
+<tr [formGroup]="form">
   <td>
-    <mat-form-field class="input-search">
+    <mat-form-field class="filter search">
       <mat-label>Nome</mat-label>
       <input
         matInput
         type="text"
-        [(ngModel)]="data.t_nome"
-        (keypress)="filterImpDimessi()"
+        formControlName="t_nome"
+        (keyup)="handleFormChange()"
       />
     </mat-form-field>
   </td>
   <td>
-    <mat-form-field class="input-search">
+    <mat-form-field class="filter search">
       <mat-label>Cognome</mat-label>
       <input
         matInput
         type="text"
-        [(ngModel)]="data.t_cognome"
-        (keypress)="filterImpDimessi()"
+        formControlName="t_cognome"
+        (keyup)="handleFormChange()"
       />
     </mat-form-field>
   </td>
   <td>
-    <mat-form-field class="input-search">
+    <mat-form-field class="filter search">
       <mat-label>Codice Fiscale</mat-label>
       <input
         matInput
         type="text"
-        [(ngModel)]="data.t_codiceFiscale"
-        (keypress)="filterImpDimessi()"
+        formControlName="t_codiceFiscale"
+        (keyup)="handleFormChange()"
       />
     </mat-form-field>
   </td>
   <td>
-    <mat-form-field class="input-search">
+    <mat-form-field class="filter search">
       <mat-label>Professione</mat-label>
       <input
         matInput
         type="text"
-        [(ngModel)]="data.t_professione"
-        (keypress)="filterImpDimessi()"
+        formControlName="t_professione"
+        (keyup)="handleFormChange()"
       />
     </mat-form-field>
   </td>

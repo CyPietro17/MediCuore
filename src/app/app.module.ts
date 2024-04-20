@@ -6,23 +6,19 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from './core/core.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { ImpiegatiComponent } from './personale/impiegati/impiegati.component';
-import { NewImpiegatoComponent } from './personale/new-impiegato/new-impiegato.component';
 import { RegisterComponent } from './core/register/register.component';
 import { InterceptService } from './services/intercept.service';
-import { ImpiegatiRepartoComponent } from './personale/impiegati-reparto/impiegati-reparto.component';
-import { ImpiegatiDimessiComponent } from './personale/impiegati-dimessi/impiegati-dimessi.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RicercaImpiegatiDimessiComponent } from './personale/ricerca/dimessi/ricerca-impiegati-dimessi/ricerca-impiegati-dimessi.component';
-import { RicercaImpiegatiAssuntiComponent } from './personale/ricerca/assunti/ricerca-impiegati-assunti/ricerca-impiegati-assunti.component';
 import { MaterialModule } from './core/modules';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 
-import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
-import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { NgToastModule } from 'ng-angular-popup';
+import {
+  EmployeesComponent,
+  ImpiegatiDimessiComponent,
+  ImpiegatiRepartoComponent,
+  NewEmployeesComponent,
+  SearchComponent,
+} from './modules/employees/components';
 
 const MY_DATE_FORMAT = {
   parse: {
@@ -36,16 +32,7 @@ const MY_DATE_FORMAT = {
   },
 };
 @NgModule({
-  declarations: [
-    AppComponent,
-    ImpiegatiComponent,
-    NewImpiegatoComponent,
-    ImpiegatiRepartoComponent,
-    RegisterComponent,
-    ImpiegatiDimessiComponent,
-    RicercaImpiegatiDimessiComponent,
-    RicercaImpiegatiAssuntiComponent,
-  ],
+  declarations: [AppComponent, RegisterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -55,6 +42,7 @@ const MY_DATE_FORMAT = {
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
+    NgToastModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptService, multi: true },

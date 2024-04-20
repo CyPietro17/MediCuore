@@ -11,8 +11,8 @@ import {
 } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PatientService } from 'src/app/modules/paziente/services/patient.service';
+import { NgToastService } from 'ng-angular-popup';
 import { Paziente } from 'src/types/Paziente';
-import { Reparto } from 'src/types/Reparto';
 
 @Component({
   selector: 'app-endHospitalization',
@@ -27,8 +27,11 @@ export class EndHospitalizationComponent implements OnInit {
     private hospitalizationService: HospitalizationService,
     private patientService: PatientService,
     private departmentService: DepartmentService,
+    private toastsService: NgToastService,
     private router: Router
   ) {}
+
+  patient?: Paziente;
 
   ngOnInit(): void {
     if (
@@ -45,6 +48,7 @@ export class EndHospitalizationComponent implements OnInit {
   private getPatient(id_patient: number): void {
     this.patientService.paziente(id_patient).subscribe({
       next: (res) => {
+        this.patient = res;
         this.closeForm
           .get('n_paziente')
           ?.setValue(res.t_nome.concat(' ', res.t_cognome));
@@ -72,7 +76,23 @@ export class EndHospitalizationComponent implements OnInit {
     this.handleData();
     this.hospitalizationService.chiudiRicovero(this.request).subscribe({
       next: () => {
+        this.toastsService.info({
+          detail: 'INFO SEVICE',
+          summary:
+            this.patient?.t_cognome +
+            ' ' +
+            this.patient?.t_nome +
+            "'s hospitalization end",
+          duration: 5000,
+        });
         this.dialogSheet.close(this.request);
+      },
+      error: () => {
+        this.toastsService.error({
+          detail: 'ERROR',
+          summary: 'Please insert the correct data',
+          duration: 5000,
+        });
       },
     });
   }

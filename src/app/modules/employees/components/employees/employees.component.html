@@ -1,5 +1,5 @@
 <mat-card class="container" style="background-color: #f3f3f3">
-  <mat-card-header [formGroup]="form">
+  <mat-card-header>
     <mat-card-title
       class="title"
       style="display: flex; justify-content: center"
@@ -15,32 +15,10 @@
 
       <div>
         <table class="filter-search" cellspacing="0" *ngIf="filter">
-          <tr>
-            <td>
-              <mat-form-field class="input-search">
-                <mat-label>Nome</mat-label>
-                <input matInput type="text" formControlName="t_nome" />
-              </mat-form-field>
-            </td>
-            <td>
-              <mat-form-field class="input-search">
-                <mat-label>Cognome</mat-label>
-                <input matInput type="text" formControlName="t_cognome" />
-              </mat-form-field>
-            </td>
-            <td>
-              <mat-form-field class="input-search">
-                <mat-label>Codice Fiscale</mat-label>
-                <input matInput type="text" formControlName="t_codiceFiscale" />
-              </mat-form-field>
-            </td>
-            <td>
-              <mat-form-field class="input-search">
-                <mat-label>Professione</mat-label>
-                <input matInput type="text" formControlName="t_professione" />
-              </mat-form-field>
-            </td>
-          </tr>
+          <app-search
+            [check]="checked"
+            (responseEvent)="handleResponse($event)"
+          ></app-search>
         </table>
 
         <button

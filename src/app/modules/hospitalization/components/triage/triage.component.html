@@ -20,6 +20,17 @@
     <mat-datepicker #picker1></mat-datepicker>
   </mat-form-field>
 
+  <!-- DATA FINE RICOVERO -->
+  <mat-form-field>
+    <mat-label>Fine ricovero</mat-label>
+    <input matInput [matDatepicker]="picker2" id="floatingInput" required />
+    <mat-datepicker-toggle
+      matIconSuffix
+      [for]="picker2"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+
   <!-- REPARTO -->
   <mat-form-field>
     <mat-label>Reparto</mat-label>
@@ -53,7 +64,20 @@
       >
     </mat-select>
   </mat-form-field>
+
+  <!-- CODICE FISCALE -->
+  <mat-form-field>
+    <mat-label>Codice Fiscale</mat-label>
+    <input
+      matInput
+      type="text"
+      id="floatingInput"
+      formControlName="t_codiceFiscale"
+      required
+    />
+  </mat-form-field>
 </div>
+
 <div mat-dialog-actions>
   <button
     mat-raised-button

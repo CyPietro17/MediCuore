@@ -1,5 +1,5 @@
+import { WebService } from 'src/app/services/web.service';
 import { Component, OnInit } from '@angular/core';
-import { WebService } from '../../services/web.service';
 import { Impiegato } from 'src/types/Impiegato';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';

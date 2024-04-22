@@ -3,7 +3,7 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #f3f3f3;
+  background-color: rgba(243, 243, 243, 0.5);
 }
 
 li {
@@ -20,4 +20,8 @@ li a {
 
 li a:hover:not(.active) {
   background-color: #d1e7dd;
+}
+
+.header-route {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }

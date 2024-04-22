@@ -1,25 +1,19 @@
-import { Injectable, inject } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivateFn,
-  RouterStateSnapshot,
-} from '@angular/router';
+import { inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
-@Injectable({
-  providedIn: 'root',
-})
-class AuthGuard {
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): boolean {
+export const CanActivate = () => {
+  const router: Router = inject(Router);
+  const authService: AuthService = inject(AuthService);
+  if (!authService.isUserLoggedIn) {
+    router.navigate(['/']);
+    return false;
+  } else {
     return true;
   }
-}
+};
 
-export const IsAdminGuard: CanActivateFn = (
-  route: ActivatedRouteSnapshot,
-  state: RouterStateSnapshot
-): boolean => {
-  return inject(AuthGuard).canActivate(route, state);
+export const CanActivateChild = () => {
+  const authService: AuthService = inject(AuthService);
+  return authService.isAdminRole();
 };

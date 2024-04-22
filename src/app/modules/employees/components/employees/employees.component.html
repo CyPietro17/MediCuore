@@ -1,10 +1,10 @@
-<mat-card class="container" style="background-color: #f3f3f3">
+<mat-card class="container" id="cards-back">
   <mat-card-header>
     <mat-card-title
       class="title"
       style="display: flex; justify-content: center"
     >
-      <h1>IMPIEGATI</h1>
+      <h1 id="cards-font">IMPIEGATI</h1>
       <mat-slide-toggle
         formControlName="checked"
         *ngIf="admin"
@@ -31,90 +31,40 @@
           SEARCH
         </button>
       </div>
-
-      <!--       <div *ngIf="!checked">
-        <table
-          class="example-full-width"
-          cellspacing="0"
-          *ngIf="filter"
-          style="display: flex; position: absolute; right: 10%; top: 0"
-        >
-          <tr>
-            <td>
-              <mat-form-field class="input-search">
-                <mat-label>Nome</mat-label>
-                <input
-                  matInput
-                  type="text"
-                  [(ngModel)]="data.t_nome"
-                  (keypress)="filterImpDimessi()"
-                />
-              </mat-form-field>
-            </td>
-            <td>
-              <mat-form-field class="input-search">
-                <mat-label>Cognome</mat-label>
-                <input
-                  matInput
-                  type="text"
-                  [(ngModel)]="data.t_cognome"
-                  (keypress)="filterImpDimessi()"
-                />
-              </mat-form-field>
-            </td>
-            <td>
-              <mat-form-field class="input-search">
-                <mat-label>Codice Fiscale</mat-label>
-                <input
-                  matInput
-                  type="text"
-                  [(ngModel)]="data.t_codiceFiscale"
-                  (keypress)="filterImpDimessi()"
-                />
-              </mat-form-field>
-            </td>
-            <td>
-              <mat-form-field class="input-search">
-                <mat-label>Professione</mat-label>
-                <input
-                  matInput
-                  type="text"
-                  [(ngModel)]="data.t_professione"
-                  (keypress)="filterImpDimessi()"
-                />
-              </mat-form-field>
-            </td>
-          </tr>
-        </table>
-
-        <button
-          style="right: 2.5%; position: absolute"
-          mat-button
-          class="example-icon favorite-icon"
-          aria-label="Example icon-button with heart icon"
-          (click)="search()"
-        >
-          SEARCH
-        </button>
-      </div> -->
     </mat-card-title>
-    <mat-card-subtitle *ngIf="checked" style="margin-bottom: 10px"
+    <mat-card-subtitle
+      id="cards-font"
+      *ngIf="checked"
+      style="margin-bottom: 10px"
       >Assunti</mat-card-subtitle
     >
-    <mat-card-subtitle *ngIf="!checked" style="margin-bottom: 10px"
+    <mat-card-subtitle
+      id="cards-font"
+      *ngIf="!checked"
+      style="margin-bottom: 10px"
       >Dimessi</mat-card-subtitle
     >
   </mat-card-header>
   <mat-card-content *ngIf="checked">
-    <div class="mat-elevation-z8 example-container" style="overflow: auto">
+    <div class="mat-elevation-z8 example-container" id="div-table">
       <!-- TABLE ADMIN -->
       <table mat-table [dataSource]="dataSource" *ngIf="admin">
         <!-- Nome e Cognome -->
         <ng-container matColumnDef="Nome e Cognome">
-          <th mat-header-cell *matHeaderCellDef style="text-align: center">
+          <th
+            id="cards-font"
+            mat-header-cell
+            *matHeaderCellDef
+            style="text-align: center"
+          >
             Nome e Cognome
           </th>
-          <td mat-cell *matCellDef="let impiegato" style="text-align: center">
+          <td
+            id="cards-font"
+            mat-cell
+            *matCellDef="let impiegato"
+            style="text-align: center"
+          >
             {{ impiegato?.t_nome }} {{ impiegato?.t_cognome }}
           </td>
         </ng-container>

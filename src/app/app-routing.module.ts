@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './core/register/register.component';
 import { LoginComponent, ErrorComponent } from './core';
+import { CanActivate } from './services/authGuard/auth.guard';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -10,21 +11,24 @@ const routes: Routes = [
   {
     path: 'pazienti',
     loadChildren: () =>
-      import('./modules/paziente/patient.module').then((m) => m.PatientModule),
+      import('./modules/patients/patient.module').then((m) => m.PatientModule),
+    canActivate: [CanActivate],
   },
   {
     path: 'reparti',
     loadChildren: () =>
-      import('./modules/department/department.module').then(
+      import('./modules/departments/department.module').then(
         (m) => m.DepartmentModule
       ),
+    canActivate: [CanActivate],
   },
   {
     path: 'ricoveri',
     loadChildren: () =>
-      import('./modules/hospitalization/hospitalization.module').then(
+      import('./modules/hospitalizations/hospitalization.module').then(
         (m) => m.HospitalizationModule
       ),
+    canActivate: [CanActivate],
   },
   {
     path: 'impiegati',
@@ -32,6 +36,7 @@ const routes: Routes = [
       import('./modules/employees/employees.module').then(
         (m) => m.EmployeesModule
       ),
+    canActivate: [CanActivate],
   },
   { path: '**', component: ErrorComponent },
 ];

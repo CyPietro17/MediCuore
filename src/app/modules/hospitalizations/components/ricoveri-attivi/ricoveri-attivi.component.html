@@ -1,0 +1,100 @@
+<mat-card class="container" id="cards-back">
+  <mat-card-header>
+    <mat-card-title><h1>RICOVERI</h1></mat-card-title>
+    <mat-card-subtitle style="margin-bottom: 10px">Attivi</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="mat-elevation-z8" id="div-table">
+      <!-- TABLE RICOVERI -->
+      <table mat-table [dataSource]="dataSource">
+        <!-- Nome Paziente -->
+        <ng-container matColumnDef="Nome Paziente">
+          <th mat-header-cell *matHeaderCellDef style="text-align: center">
+            Nome Paziente
+          </th>
+          <td mat-cell *matCellDef="let ricovero" style="text-align: center">
+            {{ ricovero?.n_paziente?.t_nome }}
+            {{ ricovero?.n_paziente?.t_cognome }}
+          </td>
+        </ng-container>
+
+        <!-- CF Paziente -->
+        <ng-container matColumnDef="CF Paziente">
+          <th mat-header-cell *matHeaderCellDef style="text-align: center">
+            CF Paziente
+          </th>
+          <td mat-cell *matCellDef="let ricovero" style="text-align: center">
+            {{ ricovero?.n_paziente?.t_codiceFiscale }}
+          </td>
+        </ng-container>
+
+        <!-- Inizio Ricovero -->
+        <ng-container matColumnDef="Inizio Ricovero">
+          <th mat-header-cell *matHeaderCellDef style="text-align: center">
+            Inizio Ricovero
+          </th>
+          <td mat-cell *matCellDef="let ricovero" style="text-align: center">
+            {{ ricovero?.d_inizioRicovero | date : "dd/MM/yyyy" }}
+          </td>
+        </ng-container>
+
+        <!-- Reparto -->
+        <ng-container matColumnDef="Reparto">
+          <th mat-header-cell *matHeaderCellDef style="text-align: center">
+            Reparto
+          </th>
+          <td mat-cell *matCellDef="let ricovero" style="text-align: center">
+            {{ ricovero?.t_reparto?.t_nome }}
+          </td>
+        </ng-container>
+
+        <!-- Azioni -->
+        <ng-container matColumnDef="Azioni">
+          <th mat-header-cell *matHeaderCellDef style="text-align: center">
+            Azioni
+          </th>
+          <td mat-cell *matCellDef="let ricovero" style="text-align: center">
+            <button mat-button color="primary" type="submit">
+              <span class="pi pi-list"></span>
+            </button>
+            <button
+              mat-button
+              color="warn"
+              type="submit"
+              (click)="end(ricovero?.n_id)"
+            >
+              <span class="pi pi-sign-out"></span>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumns"
+          style="background-color: #d1e7dd"
+        ></tr>
+
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator
+        [length]="length"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions"
+        [showFirstLastButtons]="showFirstLastButtons"
+        [pageIndex]="pageIndex"
+        aria-label="Select page"
+      >
+      </mat-paginator>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      mat-raised-button
+      style="background-color: #d1e7dd; margin-top: 30px"
+      (click)="add()"
+    >
+      Nuovo Ricovero
+    </button>
+  </mat-card-actions>
+</mat-card>

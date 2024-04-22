@@ -48,7 +48,9 @@ export class AuthService {
   } */
 
   isUserLoggedIn() {
-    let user = sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
+    let user = sessionStorage.getItem(
+      this.USER_NAME_SESSION_ATTRIBUTE_NAME_PWD
+    );
     if (user === null) return false;
     return true;
   }
@@ -66,5 +68,27 @@ export class AuthService {
       ) as string
     );
     return user;
+  }
+
+  getUserSession(username: string, password: string): boolean {
+    const sessionResponse = JSON.parse(
+      sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME_PWD)!
+    );
+    if (
+      sessionResponse.username === username &&
+      sessionResponse.password === password
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  isAdminRole(): boolean {
+    if (sessionStorage.getItem('role') === 'ADMIN') {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

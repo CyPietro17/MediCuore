@@ -89,7 +89,7 @@ export class LoginComponent implements OnInit {
           });
       },
       error: (err) => {
-        this.toastsService.error({
+        this.toastsService.warning({
           detail: this.errorTitle.toUpperCase(),
           summary: this.errorMessage,
           duration: 5000,

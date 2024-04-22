@@ -1,9 +1,11 @@
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Component } from '@angular/core';
 import { WebService } from '../../services/web.service';
 import { UserRequest } from 'src/types/User';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { sha512 } from 'js-sha512';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +13,12 @@ import { sha512 } from 'js-sha512';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  constructor(private webService: WebService, private route: Router) {}
+  constructor(
+    private webService: WebService,
+    private route: Router,
+    private spinner: NgxSpinnerService,
+    private toast: NgToastService
+  ) {}
 
   // private hash: Hasher = sha512_256.create();
 
@@ -22,11 +29,25 @@ export class RegisterComponent {
   });
 
   onSubmit() {
-    console.log(this.preparedRequest().password);
-
     this.webService.nuovoUtente(this.preparedRequest()).subscribe({
       next: () => {
-        this.route.navigate(['login']);
+        this.spinner.show();
+        setTimeout(() => {
+          this.toast.info({
+            detail: 'INFO SERVICE',
+            summary: 'New User registered',
+            duration: 5000,
+          });
+          this.route.navigate(['login']);
+          this.spinner.hide();
+        }, 1500);
+      },
+      error: () => {
+        this.toast.error({
+          detail: 'ERROR',
+          summary: 'Something was wrong. Try Again',
+          duration: 5000,
+        });
       },
     });
   }

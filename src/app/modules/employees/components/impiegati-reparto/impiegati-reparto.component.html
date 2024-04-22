@@ -1,40 +1,113 @@
-<h2 style="text-align: center">Impiegati {{ rep.t_nome }}</h2>
-<hr class="container" />
-<div class="container">
-  <table class="table table-secondary table-hover">
-    <thead>
-      <tr class="table-success">
-        <th style="text-align: center">Nome e Cognome</th>
-        <th style="text-align: center">Data di Nascita</th>
-        <th style="text-align: center">Codice Fiscale</th>
-        <th style="text-align: center">Professione</th>
-        <th style="text-align: center" *ngIf="admin">Azioni</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let impiegato of impiegati$ | async">
-        <td style="text-align: center">
-          {{ impiegato.t_nome }} {{ impiegato.t_cognome }}
-        </td>
-        <td style="text-align: center">
-          {{ impiegato.d_dataNascita | date : "dd/MM/yyyy" }}
-        </td>
-        <td style="text-align: center">{{ impiegato.t_codiceFiscale }}</td>
-        <td style="text-align: center">
-          {{ impiegato.t_professione }}
-        </td>
-        <td style="text-align: center" *ngIf="admin">
-          <span>
-            <a
-              routerLink="/impiegati/dimetti/{{ impiegato.n_id }}"
-              style="text-decoration: none"
-              title="Dimissioni {{ impiegato.t_cognome }} {{
-                impiegato.t_nome
-              }}"
-              ><span class="pi pi-sign-out"></span></a
-          ></span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<mat-card class="container" id="cards-back">
+  <mat-card-header>
+    <mat-card-title
+      class="title"
+      style="display: flex; justify-content: center"
+    >
+      <h1 id="cards-font">IMPIEGATI {{ departmentName }}</h1>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="mat-elevation-z8 example-container" id="div-table">
+      <table mat-table [dataSource]="dataSource">
+        <!-- Nome e Cognome -->
+        <ng-container matColumnDef="Nome e Cognome">
+          <th
+            id="cards-font"
+            mat-header-cell
+            *matHeaderCellDef
+            style="text-align: center"
+          >
+            Nome e Cognome
+          </th>
+          <td
+            id="cards-font"
+            mat-cell
+            *matCellDef="let impiegato"
+            style="text-align: center"
+          >
+            {{ impiegato?.t_nome }} {{ impiegato?.t_cognome }}
+          </td>
+        </ng-container>
+
+        <!-- Data di Nascita -->
+        <ng-container matColumnDef="Data di Nascita">
+          <th
+            id="cards-font"
+            mat-header-cell
+            *matHeaderCellDef
+            style="text-align: center"
+          >
+            Data di Nascita
+          </th>
+          <td
+            id="cards-font"
+            mat-cell
+            *matCellDef="let impiegato"
+            style="text-align: center"
+          >
+            {{ impiegato?.d_dataNascita | date : "dd/MM/yyyy" }}
+          </td>
+        </ng-container>
+
+        <!-- Codice Fiscale -->
+        <ng-container matColumnDef="Codice Fiscale">
+          <th
+            id="cards-font"
+            mat-header-cell
+            *matHeaderCellDef
+            style="text-align: center"
+          >
+            Codice Fiscale
+          </th>
+          <td
+            id="cards-font"
+            mat-cell
+            *matCellDef="let impiegato"
+            style="text-align: center"
+          >
+            {{ impiegato?.t_codiceFiscale }}
+          </td>
+        </ng-container>
+
+        <!-- Professione -->
+        <ng-container matColumnDef="Professione">
+          <th
+            id="cards-font"
+            mat-header-cell
+            *matHeaderCellDef
+            style="text-align: center"
+          >
+            Professione
+          </th>
+          <td
+            id="cards-font"
+            mat-cell
+            *matCellDef="let impiegato"
+            style="text-align: center"
+          >
+            {{ impiegato?.t_professione }}
+          </td>
+        </ng-container>
+
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumns"
+          style="background-color: #d1e7dd"
+        ></tr>
+
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator
+        [length]="length"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions"
+        [showFirstLastButtons]="showFirstLastButtons"
+        [pageIndex]="pageIndex"
+        aria-label="Select page"
+      >
+      </mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,13 +1,13 @@
 import { FormGroup, FormControl } from '@angular/forms';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { WebService } from 'src/app/services/web.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Impiegato, ImpiegatoRequest } from 'src/types/Impiegato';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Observable, Subject, debounceTime, distinctUntilChanged } from 'rxjs';
+import { Observable } from 'rxjs';
 import { NewEmployeesComponent } from '../new-employees/new-employees.component';
+import { EmployeesService } from '../../services/employees.service';
 
 @Component({
   selector: 'app-employees',
@@ -16,7 +16,7 @@ import { NewEmployeesComponent } from '../new-employees/new-employees.component'
 })
 export class EmployeesComponent implements OnInit {
   constructor(
-    private webService: WebService,
+    private webService: EmployeesService,
     private route: Router,
     private dialog: MatDialog
   ) {}

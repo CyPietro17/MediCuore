@@ -1,44 +1,74 @@
-<div class="container">
-  <h2 style="text-align: center">Registrazione nuovo utente</h2>
-  <hr />
-</div>
-<div class="d-flex justify-content-center">
-  <form class="row g-3" [formGroup]="newUser" (ngSubmit)="onSubmit()">
-    <div class="form-floating mb-3">
-      <input
-        type="text"
-        class="form-control"
-        id="floatingInput"
-        formControlName="username"
-        placeholder="Username"
-        required
-      />
-      <label for="floatingInput">Username</label>
+<div class="container" style="margin-top: 10%" id="cards-font">
+  <div class="card text-center" style="max-width: 20rem; margin: auto">
+    <div
+      class="card-header"
+      style="text-align: center; background-color: #d1e7dd"
+    >
+      <h1 class="cards-login">Register User</h1>
     </div>
-    <div class="form-floating mb-3">
-      <input
-        type="password"
-        class="form-control"
-        id="floatingInput"
-        formControlName="password"
-        placeholder="Password"
-        required
-      />
-      <label for="floatingInput">Password</label>
-    </div>
-    <div class="form-floating mb-3">
-      <input
-        type="email"
-        class="form-control"
-        id="floatingInput"
-        formControlName="email"
-        placeholder="Email"
-        required
-      />
-      <label for="floatingInput">Email</label>
-    </div>
-    <div class="col-auto">
-      <button type="submit" class="btn btn-success btn-lg">Registrati</button>
-    </div>
-  </form>
+    <form class="form-signin" [formGroup]="newUser" (ngSubmit)="onSubmit()">
+      <div class="card-body" style="background-color: #f3f3f3">
+        <div class="form-floating mb-3">
+          <input
+            type="email"
+            class="form-control"
+            formControlName="email"
+            placeholder="Email"
+            required
+          />
+          <label for="floatingInput">Email</label>
+        </div>
+
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            name="username"
+            class="form-control"
+            formControlName="username"
+            placeholder="Username"
+            required
+          />
+          <label for="floatingInput">Username</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="password"
+            name="password"
+            class="form-control"
+            placeholder="Password"
+            formControlName="password"
+            required
+          />
+          <label for="floatingPassword">Password</label>
+        </div>
+      </div>
+      <div
+        class="card-footer"
+        style="text-align: center; background-color: #d1e7dd"
+      >
+        <div>
+          <span style="padding-right: 10px">
+            <button
+              class="btn btn-primary btn-sm"
+              type="submit"
+              id="login-button"
+            >
+              Register User
+            </button>
+          </span>
+          <span>
+            <button
+              type="button"
+              class="btn btn-success btn-sm"
+              id="login-button"
+            >
+              <a style="text-decoration: none; color: white" routerLink="/login"
+                >Return to Login</a
+              >
+            </button>
+          </span>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>

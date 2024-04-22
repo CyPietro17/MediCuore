@@ -8,8 +8,8 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { WebService } from 'src/app/services/web.service';
 import { Impiegato } from 'src/types/Impiegato';
+import { EmployeesService } from '../../services/employees.service';
 
 @Component({
   selector: 'app-impiegati-dimessi',
@@ -17,7 +17,7 @@ import { Impiegato } from 'src/types/Impiegato';
   styleUrls: ['./impiegati-dimessi.component.css'],
 })
 export class ImpiegatiDimessiComponent implements OnInit {
-  constructor(private webService: WebService, private route: Router) {}
+  constructor(private webService: EmployeesService, private route: Router) {}
 
   @Output() dimessi$ = new EventEmitter<Impiegato[]>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;

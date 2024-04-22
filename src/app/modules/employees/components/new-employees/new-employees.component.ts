@@ -1,11 +1,11 @@
-import { WebService } from 'src/app/services/web.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { ImpiegatoRequest } from 'src/types/Impiegato';
 import { Reparto } from 'src/types/Reparto';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { DepartmentService } from 'src/app/modules/department/services/department.service';
+import { DepartmentService } from 'src/app/modules/departments/services/department.service';
+import { EmployeesService } from '../../services/employees.service';
 
 @Component({
   selector: 'app-new-employees',
@@ -17,7 +17,7 @@ export class NewEmployeesComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: ImpiegatoRequest,
     private dialogRef: MatDialogRef<NewEmployeesComponent>,
     private departmentService: DepartmentService,
-    private webService: WebService,
+    private webService: EmployeesService,
     private route: Router
   ) {}
 

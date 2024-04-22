@@ -1,0 +1,36 @@
+<div mat-dialog-content [formGroup]="RequestDepartment" ]>
+  <mat-form-field>
+    <mat-label id="cards-font">Nome Reparto</mat-label>
+    <input
+      matInput
+      type="text"
+      formControlName="t_nome"
+      id="floatingInput"
+      required
+    />
+  </mat-form-field>
+</div>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label id="cards-font">Posti Letto</mat-label>
+    <input
+      matInput
+      type="number"
+      formControlName="n_postiLettoEffettivi"
+      id="floatingInput"
+      value="1"
+      min="1"
+      required
+    />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button
+    id="cards-font"
+    mat-raised-button
+    style="background-color: #d1e7dd; height: 58px; width: 100%"
+    (click)="onClick()"
+  >
+    Conferma
+  </button>
+</div>

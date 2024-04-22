@@ -1,8 +1,8 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, Observable } from 'rxjs';
-import { WebService } from 'src/app/services/web.service';
 import { Impiegato } from 'src/types/Impiegato';
+import { EmployeesService } from '../../services/employees.service';
 
 @Component({
   selector: 'app-search',
@@ -10,7 +10,7 @@ import { Impiegato } from 'src/types/Impiegato';
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent {
-  constructor(private webService: WebService) {}
+  constructor(private webService: EmployeesService) {}
 
   @Input() check: boolean = false;
   @Output() responseEvent = new EventEmitter<Observable<Impiegato[]>>();

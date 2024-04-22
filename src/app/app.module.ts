@@ -12,13 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './core/modules';
 
 import { NgToastModule } from 'ng-angular-popup';
-import {
-  EmployeesComponent,
-  ImpiegatiDimessiComponent,
-  ImpiegatiRepartoComponent,
-  NewEmployeesComponent,
-  SearchComponent,
-} from './modules/employees/components';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 const MY_DATE_FORMAT = {
   parse: {
@@ -43,6 +37,7 @@ const MY_DATE_FORMAT = {
     BrowserAnimationsModule,
     MaterialModule,
     NgToastModule,
+    NgxSpinnerModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptService, multi: true },

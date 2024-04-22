@@ -1,10 +1,10 @@
-import { WebService } from 'src/app/services/web.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Impiegato } from 'src/types/Impiegato';
-import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Reparto } from 'src/types/Reparto';
-import { DepartmentService } from 'src/app/modules/department/services/department.service';
+import { DepartmentService } from 'src/app/modules/departments/services/department.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { EmployeesService } from '../../services/employees.service';
 
 @Component({
   selector: 'app-impiegati-reparto',
@@ -14,19 +14,34 @@ import { DepartmentService } from 'src/app/modules/department/services/departmen
 export class ImpiegatiRepartoComponent implements OnInit {
   constructor(
     private departmentService: DepartmentService,
-    private webService: WebService,
+    private webService: EmployeesService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
 
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  displayedColumns: string[] = [
+    'Nome e Cognome',
+    'Data di Nascita',
+    'Codice Fiscale',
+    'Professione',
+  ];
+
+  dataSource: MatTableDataSource<Impiegato> = new MatTableDataSource<Impiegato>(
+    []
+  );
+
   admin!: boolean;
   id: number = this.route.snapshot.params['id'];
 
-  impiegati$!: Observable<Impiegato[]>;
+  departmentName!: string;
 
-  reparto$!: Observable<Reparto>;
-
-  rep!: Reparto;
+  length!: number;
+  pageSize = 5;
+  pageSizeOptions = [5, 10];
+  showFirstLastButtons = true;
+  pageIndex = 0;
 
   ngOnInit(): void {
     if (
@@ -36,14 +51,24 @@ export class ImpiegatiRepartoComponent implements OnInit {
     ) {
       this.router.navigateByUrl('');
     }
-    this.impiegati$ = this.webService.getImpiegatiReparto(this.id);
-    this.reparto$ = this.departmentService.getReparto(this.id);
-    this.reparto$.subscribe({
+    this.getResponseEmployees(this.id);
+    this.getDepartment(this.id);
+  }
+
+  private getResponseEmployees(departmentID: number) {
+    this.webService.getImpiegatiReparto(this.id).subscribe({
       next: (res) => {
-        this.rep = res;
-        if (sessionStorage.getItem('authenticatedUser') === 'admin01') {
-          this.admin = true;
-        }
+        this.length = res.length;
+        this.dataSource.data = res;
+        this.dataSource.paginator = this.paginator;
+      },
+    });
+  }
+
+  private getDepartment(departmentID: number) {
+    this.departmentService.getReparto(this.id).subscribe({
+      next: (res) => {
+        this.departmentName = res.t_nome.toUpperCase();
       },
     });
   }

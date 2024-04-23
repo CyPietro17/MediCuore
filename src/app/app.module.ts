@@ -14,17 +14,6 @@ import { MaterialModule } from './core/modules';
 import { NgToastModule } from 'ng-angular-popup';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
-const MY_DATE_FORMAT = {
-  parse: {
-    dateInput: 'DD/MM/YYYY', // this is how your date will be parsed from Input
-  },
-  display: {
-    dateInput: 'DD/MM/YYYY', // this is how your date will get displayed on the Input
-    monthYearLabel: 'MMMM YYYY',
-    dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'MMMM YYYY',
-  },
-};
 @NgModule({
   declarations: [AppComponent, RegisterComponent],
   imports: [

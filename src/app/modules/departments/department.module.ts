@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from 'src/app/core/modules';
 import { CoreModule } from 'src/app/core/core.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DepartmentComponent, NewDepartmentComponent } from './components';
 import { DepartmentRoutes } from './department.routes';
+import { MaterialModule } from 'src/app/core/modules';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [NewDepartmentComponent, DepartmentComponent],
@@ -12,9 +12,9 @@ import { DepartmentRoutes } from './department.routes';
     CommonModule,
     MaterialModule,
     CoreModule,
-    DepartmentRoutes,
     FormsModule,
     ReactiveFormsModule,
+    DepartmentRoutes,
   ],
   exports: [NewDepartmentComponent, DepartmentComponent],
 })

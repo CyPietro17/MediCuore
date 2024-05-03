@@ -23,7 +23,13 @@
   <!-- DATA FINE RICOVERO -->
   <mat-form-field>
     <mat-label>Fine ricovero</mat-label>
-    <input matInput [matDatepicker]="picker2" id="floatingInput" required />
+    <input
+      matInput
+      [matDatepicker]="picker2"
+      id="floatingInput"
+      formControlName="d_fineRicovero"
+      required
+    />
     <mat-datepicker-toggle
       matIconSuffix
       [for]="picker2"
@@ -56,6 +62,22 @@
       formControlName="n_paziente"
       id="floatingSelect"
       required
+      *ngIf="autocompile"
+      (ngModelChange)="handleNameChanges(n_paziente!)"
+    >
+      <mat-option
+        *ngFor="let paziente of pazienti$ | async"
+        value="{{ paziente.n_id }}"
+        >{{ paziente.t_nome }} {{ paziente.t_cognome }}</mat-option
+      >
+    </mat-select>
+
+    <mat-select
+      matInput
+      formControlName="n_paziente"
+      id="floatingSelect"
+      required
+      *ngIf="!autocompile"
     >
       <mat-option
         *ngFor="let paziente of pazienti$ | async"

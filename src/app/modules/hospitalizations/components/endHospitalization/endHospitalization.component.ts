@@ -32,6 +32,7 @@ export class EndHospitalizationComponent implements OnInit {
   ) {}
 
   patient?: Paziente;
+  autocompile: boolean = false;
 
   ngOnInit(): void {
     if (

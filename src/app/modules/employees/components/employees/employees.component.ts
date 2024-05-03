@@ -1,4 +1,3 @@
-import { FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Impiegato, ImpiegatoRequest } from 'src/types/Impiegato';
 import { Router } from '@angular/router';
@@ -8,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { NewEmployeesComponent } from '../new-employees/new-employees.component';
 import { EmployeesService } from '../../services/employees.service';
+import { ThemePalette } from '@angular/material/core';
 
 @Component({
   selector: 'app-employees',
@@ -20,16 +20,6 @@ export class EmployeesComponent implements OnInit {
     private route: Router,
     private dialog: MatDialog
   ) {}
-
-  form: FormGroup = new FormGroup({
-    checked: new FormControl(false),
-    t_nome: new FormControl(null),
-    t_cognome: new FormControl(null),
-    d_dataNascita: new FormControl(null),
-    t_codiceFiscale: new FormControl(null),
-    t_professione: new FormControl(null),
-    n_reparto: new FormControl(null),
-  });
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -73,7 +63,8 @@ export class EmployeesComponent implements OnInit {
   };
 
   /* impDim!: Impiegato[]; */
-  // checked: boolean = true;
+  checked: boolean = true;
+  color: ThemePalette = 'primary';
   admin: boolean = false;
   filter: boolean = false;
   length!: number;
@@ -190,7 +181,12 @@ export class EmployeesComponent implements OnInit {
     });
   }
 
-  cntrlChecked() {
+  handleChecked() {
+    this.checked = !this.checked;
+    this.cntrlChecked();
+  }
+
+  private cntrlChecked() {
     if (this.checked) {
       this.webService.getImpiegatiAssunti().subscribe({
         next: (result) => {
@@ -231,11 +227,11 @@ export class EmployeesComponent implements OnInit {
     });
   }
 
-  get checked() {
-    return this.form.get('checked')?.value;
-  }
+  // get checked() {
+  //   return this.form.get('checked')?.value;
+  // }
 
-  set checked(checked: boolean) {
-    this.form.get('checked')?.setValue(checked);
-  }
+  // set checked(checked: boolean) {
+  //   this.form.get('checked')?.setValue(checked);
+  // }
 }

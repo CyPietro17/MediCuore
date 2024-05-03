@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
+import { URL_SERVER } from 'src/constants/constants';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,7 @@ export class AuthService {
 
   authenticationService(username: string, password: string) {
     return this.http
-      .get(`http://localhost:5003/medicuore/auth`, {
+      .get(URL_SERVER + `/auth`, {
         headers: {
           authorization: this.createBasicAuthToken(username, password),
         },

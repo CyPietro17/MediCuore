@@ -6,7 +6,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { NewPazienteComponent } from '../new-paziente/new-paziente.component';
 import { PatientService } from '../../services/patient.service';
-import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-pazienti',
@@ -16,7 +15,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class PazientiComponent implements OnInit {
   constructor(
     private webService: PatientService,
-    private spinner: NgxSpinnerService,
     private route: ActivatedRoute,
     private router: Router,
     private dialog: MatDialog
@@ -64,10 +62,6 @@ export class PazientiComponent implements OnInit {
     }
     this.webService.getPazienti().subscribe({
       next: (res) => {
-        this.spinner.show();
-        setTimeout(() => {
-          this.spinner.hide();
-        }, 1000);
         this.length = res.length;
         this.dataSource.data = res;
       },

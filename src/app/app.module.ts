@@ -10,7 +10,6 @@ import { RegisterComponent } from './core/register/register.component';
 import { InterceptService } from './services/intercept.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './core/modules';
-
 import { NgToastModule } from 'ng-angular-popup';
 import { NgxSpinnerModule } from 'ngx-spinner';
 

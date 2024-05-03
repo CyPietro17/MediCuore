@@ -7,7 +7,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { NewDepartmentComponent } from '../new-department/new-department.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DepartmentService } from '../../services/department.service';
-import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-reparti',
@@ -19,7 +18,6 @@ export class DepartmentComponent implements OnInit, AfterViewInit {
     private webService: DepartmentService,
     private route: Router,
     private authService: AuthService,
-    private spinner: NgxSpinnerService,
     private dialog: MatDialog
   ) {}
 
@@ -40,7 +38,6 @@ export class DepartmentComponent implements OnInit, AfterViewInit {
   dataSource: MatTableDataSource<Reparto> = new MatTableDataSource<Reparto>([]);
   admin: boolean = false;
   aggiungi: boolean = false;
-  isLoggedIn = false;
   length!: number;
   pageSize = 5;
   pageSizeOptions = [5, 10];
@@ -57,11 +54,6 @@ export class DepartmentComponent implements OnInit, AfterViewInit {
     ) {
       this.route.navigateByUrl('');
     }
-    this.isLoggedIn = this.authService.isUserLoggedIn();
-    this.spinner.show();
-    setTimeout(() => {
-      this.spinner.hide();
-    }, 1000);
     this.webService.getReparti().subscribe({
       next: (res) => {
         this.length = res.length;
@@ -73,10 +65,6 @@ export class DepartmentComponent implements OnInit, AfterViewInit {
       },
     });
   }
-
-  /* add(): boolean {
-    return (this.aggiungi = !this.aggiungi);
-  } */
 
   add(): void {
     let sheet = this.dialog.open(NewDepartmentComponent, {
@@ -104,28 +92,4 @@ export class DepartmentComponent implements OnInit, AfterViewInit {
     }
     return (this.admin = false);
   }
-
-  /* onNewReparto(reparto: RepartoRequest) {
-    this.rep = reparto;
-    this.webService.nuovoReparto(this.rep).subscribe({
-      next: () => {
-        this.webService.getReparti().subscribe({
-          next: (res) => {
-            this.reparti$ = res;
-            this.length = res.length;
-            this.dataSource.data = res;
-          },
-        });
-      },
-      error: () => {
-        console.log('Impossibile aggiungere Reparto');
-      },
-    });
-  } */
-
-  /* OnPageChange(event: PageEvent) {
-    this.length = event.length;
-    this.pageSize = event.pageSize;
-    this.pageIndex = event.pageIndex;
-  } */
 }

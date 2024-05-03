@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { URL_SERVER } from 'src/constants/constants';
 import { Impiegato, ImpiegatoRequest } from 'src/types/Impiegato';
 
 @Injectable({
@@ -9,7 +10,7 @@ import { Impiegato, ImpiegatoRequest } from 'src/types/Impiegato';
 export class EmployeesService {
   constructor(private httpCilent: HttpClient) {}
 
-  private readonly apiUrl: string = `http://localhost:5003/medicuore/impiegati`;
+  private readonly apiUrl: string = URL_SERVER + `/impiegati`;
 
   getImpiegatiReparto(id: number): Observable<Impiegato[]> {
     return this.httpCilent.get<Impiegato[]>(`${this.apiUrl}/reparto/` + id);

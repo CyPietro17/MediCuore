@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { URL_SERVER } from 'src/constants/constants';
 import {
   Ricovero,
   FineRicoveroRequest,
@@ -13,7 +14,7 @@ import {
 export class HospitalizationService {
   constructor(private httpClient: HttpClient) {}
 
-  private readonly apiUrl: string = `http://localhost:5003/medicuore/ricoveri`;
+  private readonly apiUrl: string = URL_SERVER + `/ricoveri`;
 
   cercaRicovero(id: number): Observable<Ricovero> {
     return this.httpClient.get<Ricovero>(`${this.apiUrl}/cerca?id=` + id);

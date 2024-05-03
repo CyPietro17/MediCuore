@@ -5,12 +5,25 @@
       style="display: flex; justify-content: center"
     >
       <h1 id="cards-font">IMPIEGATI</h1>
-      <mat-slide-toggle
-        formControlName="checked"
-        *ngIf="admin"
-        style="margin-left: 10px"
-        (change)="cntrlChecked()"
-        >Impiegati Assunti</mat-slide-toggle
+      <span *ngIf="admin">
+        <mat-slide-toggle
+          *ngIf="checked"
+          [checked]="checked"
+          [color]="color"
+          style="margin-left: 10px"
+          (change)="handleChecked()"
+        >
+          Impiegati Assunti
+        </mat-slide-toggle>
+        <mat-slide-toggle
+          *ngIf="!checked"
+          [checked]="checked"
+          [color]="color"
+          style="margin-left: 10px"
+          (change)="handleChecked()"
+        >
+          Impiegati Dimessi
+        </mat-slide-toggle></span
       >
 
       <div>
@@ -266,6 +279,7 @@
       </table>
 
       <mat-paginator
+        [length]="length"
         [pageSize]="pageSize"
         [pageSizeOptions]="pageSizeOptions"
         [showFirstLastButtons]="showFirstLastButtons"
@@ -273,9 +287,6 @@
         aria-label="Select page"
       >
       </mat-paginator>
-      <!-- <app-impiegati-dimessi
-        (dimessi$)="impDimessi($event)"
-      ></app-impiegati-dimessi> -->
     </div>
   </mat-card-content>
 
@@ -293,83 +304,3 @@
     </div>
   </mat-card-actions>
 </mat-card>
-
-<!-- <div class="container">
-  <h2 style="text-align: center">
-    Impiegati
-    <a
-      routerLink="/impiegati/dimessi"
-      style="text-decoration: none"
-      *ngIf="admin"
-      ><span
-        class="pi pi-chevron-circle-right"
-        style="padding-left: 10px"
-        title="Impiegati Dimessi"
-      ></span
-    ></a>
-  </h2>
-  <hr />
-
-  <div class="mat-elevation-z8">
-
-
-    <mat-paginator
-      [length]="length"
-      [pageSize]="pageSize"
-      [pageSizeOptions]="pageSizeOptions"
-      [showFirstLastButtons]="showFirstLastButtons"
-      [pageIndex]="pageIndex"
-      aria-label="Select page"
-    >
-    </mat-paginator>
-  </div> -->
-
-<!-- <table class="table table-secondary table-hover">
-    <thead>
-      <tr class="table-success">
-        <th style="text-align: center">Nome e Cognome</th>
-        <th style="text-align: center">Data di Nascita</th>
-        <th style="text-align: center">Codice Fiscale</th>
-        <th style="text-align: center">Professione</th>
-        <th style="text-align: center">Reparto</th>
-        <th style="text-align: center" *ngIf="admin">Azioni</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let impiegato of impiegati$ | async">
-        <td style="text-align: center">
-          {{ impiegato.t_nome }} {{ impiegato.t_cognome }}
-        </td>
-        <td style="text-align: center">
-          {{ impiegato.d_dataNascita | date : "dd/MM/yyyy" }}
-        </td>
-        <td style="text-align: center">{{ impiegato.t_codiceFiscale }}</td>
-        <td style="text-align: center">
-          {{ impiegato.t_professione }}
-        </td>
-        <td style="text-align: center">
-          {{ impiegato.t_reparto.t_nome }}
-        </td>
-        <td style="text-align: center" *ngIf="admin">
-          <button
-            type="submit"
-            class="btn btn-outline-light"
-            (click)="dimettiImp(impiegato.n_id)"
-            title="Dimissioni {{ impiegato.t_cognome }} {{ impiegato.t_nome }}"
-          >
-            <span class="pi pi-sign-out"></span>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table> -->
-<!-- <div *ngIf="admin">
-    <button
-      mat-raised-button
-      style="background-color: #d1e7dd; margin-top: 30px"
-      (click)="add()"
-    >
-      Aggiungi Impiegato
-    </button>
-  </div>
-</div> -->

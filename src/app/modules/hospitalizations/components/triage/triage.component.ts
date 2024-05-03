@@ -33,7 +33,12 @@ export class TriageComponent implements OnInit {
     ) {
       this.route.navigateByUrl('');
     }
+
+    this.newRicovero.get('d_fineRicovero')?.disable();
+    this.newRicovero.get('t_codiceFiscale')?.disable();
   }
+
+  autocompile: boolean = true;
 
   reparti$: Observable<Reparto[]> = this.departmentService.getReparti();
   pazienti$: Observable<Paziente[]> =
@@ -48,14 +53,28 @@ export class TriageComponent implements OnInit {
     });
   }
 
+  handleNameChanges(id_patient: number) {
+    this.patientService.paziente(id_patient).subscribe({
+      next: (res) => {
+        this.newRicovero.get('t_codiceFiscale')?.setValue(res.t_codiceFiscale);
+      },
+    });
+  }
+
   newRicovero = new FormGroup({
     d_inizioRicovero: new FormControl(new Date(), Validators.required),
+    d_fineRicovero: new FormControl(null),
     n_paziente: new FormControl(null, Validators.required),
     n_reparto: new FormControl(null, Validators.required),
+    t_codiceFiscale: new FormControl('', Validators.required),
   });
 
   get d_inizioRicovero() {
     return this.newRicovero.get('d_inizioRicovero')!.value;
+  }
+
+  get d_fineRicovero() {
+    return this.newRicovero.get('d_fineRicovero')!.value;
   }
 
   get n_paziente() {
@@ -64,6 +83,10 @@ export class TriageComponent implements OnInit {
 
   get n_reparto() {
     return this.newRicovero.get('n_reparto')!.value;
+  }
+
+  get t_codiceFiscale() {
+    return this.newRicovero.get('t_codiceFiscale')!.value;
   }
 
   private handleData(): void {

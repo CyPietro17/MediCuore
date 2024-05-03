@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { WebService } from 'src/app/services/web.service';
 import { sha512 } from 'js-sha512';
 import { NgToastService } from 'ng-angular-popup';
+import { getCookie } from 'typescript-cookie';
 
 @Component({
   selector: 'app-login',
@@ -57,8 +58,10 @@ export class LoginComponent implements OnInit {
   gestAuth(): void {
     this.webService.login(this.preparedRequest()).subscribe({
       next: (res) => {
+        let xsrf = getCookie('XSRF-TOKEN')!;
         this.nameuser = res.username;
-        sessionStorage.setItem('role', res.role);
+        window.sessionStorage.setItem('role', res.role);
+        window.sessionStorage.setItem('XSRF-TOKEN', xsrf);
         this.authService
           .authenticationService(
             this.preparedRequest().username!,

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { URL_SERVER } from 'src/constants/constants';
 import { Paziente, PazienteRequest } from 'src/types/Paziente';
 
 @Injectable({
@@ -9,7 +10,7 @@ import { Paziente, PazienteRequest } from 'src/types/Paziente';
 export class PatientService {
   constructor(private httpClient: HttpClient) {}
 
-  private readonly apiUrl: string = `http://localhost:5003/medicuore/pazienti`;
+  private readonly apiUrl: string = URL_SERVER + `/pazienti`;
 
   getPazienti(): Observable<Paziente[]> {
     return this.httpClient.get<Paziente[]>(`${this.apiUrl}/tutti`);

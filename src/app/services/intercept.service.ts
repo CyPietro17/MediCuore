@@ -27,13 +27,18 @@ export class InterceptService implements HttpInterceptor {
       req.url.indexOf('basicauth') === -1
     ) {
       const user = this.authService.getUser();
+      let httpHeaders = new HttpHeaders({
+        Authorization: `Basic ${window.btoa(
+          user.username + ':' + user.password
+        )}`,
+      });
+      httpHeaders.append('Content-Type', 'application/json');
+      let xsrf = sessionStorage.getItem('XSRF-TOKEN');
+      if (xsrf != null || xsrf != undefined) {
+        httpHeaders.append('X-XSRF-TOKEN', xsrf);
+      }
       const authReq = req.clone({
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          Authorization: `Basic ${window.btoa(
-            user.username + ':' + user.password
-          )}`,
-        }),
+        headers: httpHeaders,
       });
       return next.handle(authReq);
     } else {

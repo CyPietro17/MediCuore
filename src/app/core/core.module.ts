@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { ErrorComponent } from './error/error.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -13,8 +15,21 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FooterComponent,
     LoginComponent,
     ErrorComponent,
+    SpinnerComponent,
   ],
-  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
-  exports: [HeaderComponent, FooterComponent, LoginComponent, ErrorComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxSpinnerModule,
+  ],
+  exports: [
+    HeaderComponent,
+    FooterComponent,
+    LoginComponent,
+    ErrorComponent,
+    SpinnerComponent,
+  ],
 })
 export class CoreModule {}

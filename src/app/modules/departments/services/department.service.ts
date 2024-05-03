@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { URL_SERVER } from 'src/constants/constants';
 import { Reparto, RepartoRequest } from 'src/types/Reparto';
 
 @Injectable({
@@ -9,7 +10,7 @@ import { Reparto, RepartoRequest } from 'src/types/Reparto';
 export class DepartmentService {
   constructor(private httpClient: HttpClient) {}
 
-  private readonly apiUrl: string = `http://localhost:5003/medicuore/reparti`;
+  private readonly apiUrl: string = URL_SERVER + `/reparti`;
 
   getReparti(): Observable<Reparto[]> {
     return this.httpClient.get<Reparto[]>(`${this.apiUrl}`);
